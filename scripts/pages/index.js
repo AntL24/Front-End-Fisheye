@@ -1,4 +1,9 @@
-    //Request to get the photographers data
+
+
+//Import the photographer factory
+import { photographerFactory } from '../factories/photographer.js';
+
+   //Request to get the photographers data
     async function getPhotographers() {
         try {
             const response = await fetch("data/photographers.json");
