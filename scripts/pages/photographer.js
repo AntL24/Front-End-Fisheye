@@ -9,33 +9,15 @@ function hideLoader() {
       }
     }, 3000);
   }
-  
 hideLoader();
-  
 
 //Get the photographer ID from the URL
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 
-//Get the photographers data from the json file
-async function getData() {
-    try {
-        const response = await fetch("data/photographers.json");
-        if (!response.ok) {
-            throw new Error('Erreur de chargement des données');
-        }
-        const photographersData = await response.json();
-        return photographersData;
-    } catch (error) {
-        console.log(error);
-        return { photographersData: [] };
-    }
-}
-
 //Filter the photographers data to get the photographer with the same ID
 async function getPhotographer(id) {
     const { photographers } = await getData();
-    //photographers tab within the json file
     return photographers.find(photographer => photographer.id == id);
 }
 
