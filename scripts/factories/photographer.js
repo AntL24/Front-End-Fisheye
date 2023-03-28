@@ -1,10 +1,10 @@
-//Return an object containing the photographer's name, picture and the article DOM element returned by the getUserCardDOM inner function.
+//Return an object containing the photographer's name, picture and the article DOM element returned by the makeUserCard inner function.
 function photographerFactory(data) {
     const { name, portrait, id, city, country, tagline, price } = data;
     const picture = `assets/photographers/${portrait}`;
 
     //Construction of the photographer card with DOM elements
-    function getUserCardDOM() {
+    function makeUserCard() {
         const article = document.createElement('article');
         const img = document.createElement('img');
         const h2 = document.createElement('h2');
@@ -41,5 +41,5 @@ function photographerFactory(data) {
 
         return (article);
     }
-    return { name, picture, getUserCardDOM }
+    return { name, picture, makeUserCard }
 }
