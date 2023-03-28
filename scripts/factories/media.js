@@ -1,94 +1,77 @@
+//Get data and filter it to get the page's photographer infos. Then display the medias.
+async function getAndDisplayMedias() {
+    const data = await getData();
+    const allPhotographers = data.photographers;
+    const allMedias = data.media;
 
-//Get all media corresponding to photographer name, and display them in the DOM
-function getMedia(name) {
-    const nameTextContent = name.textContent;
-    const firstName = nameTextContent.split(' ')[0];
-    const folderName = firstName.replace('-', ' ');
+    const photographerMedias = allMedias.filter(media => media.photographerId == id);
+    const photographer = allPhotographers.find(photographer => photographer.id == id);
 
-    fetch(`FishEye_Photos/Sample Photos/${folderName}`)
-        .then(response => response.text())
-        .then(html => {
-        // Analyse de la réponse HTML pour extraire les noms de fichiers
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, "text/html");
-        //mediaElements are either jpg, jpeg, png, gif or mp4
-        const imageElements = doc.querySelectorAll("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.gif'], a[href$='.mp4']");
-        const imageNames = Array.from(imageElements).map(
-            element => element.href.split("/").pop()
-        ); // Récupère le nom de fichier à partir de l'URL du lien
+    const photographerName = photographer.name;
+    const firstName = photographerName.split(' ')[0];
 
-    // Utilisation des noms de fichiers pour afficher les images sur la page
+    const photographerPrice = photographer.price;
+
+    displayMedias(photographerMedias, firstName, photographerPrice);
+}
+
+//Display the photographer medias in the gallery
+function displayMedias(medias, firstName, photographerPrice) {
     const container = document.querySelector(".media__container");
-    imageNames.forEach(imageName =>{
+
+    medias.forEach(media => {
+        const mediaTitle = media.title;
+        const mediaLikes = media.likes;
+        const mediaDate = media.date;
+        const mediaName = media.image;
 
         //Create media element (img or video) with a link
         const imgLink = document.createElement("a");
         imgLink.setAttribute("aria-label", "Voir le média");
         imgLink.setAttribute("class", "media__link");
-        //empty link for now
+
+        //empty link for now //COMPLETE LATER WITH LIGHTBOX
         imgLink.href = "";
 
-        //Add media card englobing the media element and the stats container
+        //Add media card. It will be englobing the media element and the stats container
         const mediaCard = document.createElement("article");
         mediaCard.setAttribute("class", "media__card");
+        mediaCard.setAttribute("data-date", mediaDate);
+        mediaCard.setAttribute("data-likes", mediaLikes);
+        mediaCard.setAttribute("data-title", mediaTitle);
         container.appendChild(mediaCard);
         mediaCard.appendChild(imgLink);
 
-        //Add stats container
-        const statsContainer = document.createElement("div");
-        statsContainer.setAttribute("class", "media__stats-container");
-        mediaCard.appendChild(statsContainer);
-
-        //Add like button
-        const likeButton = document.createElement("button");
-        likeButton.setAttribute("class", "media__like-button");
-        likeButton.setAttribute("aria-label", "Ajouter un like");
-        likeButton.innerHTML = `<i class="fas fa-heart"></i>`;
-        statsContainer.appendChild(likeButton);
-
-        //Add like counter
-        const likeCounter = document.createElement("p");
-        likeCounter.setAttribute("class", "media__like-counter");
-        likeCounter.textContent = "0";
-        statsContainer.appendChild(likeCounter);
-
-        //Add event listener to like button
-        likeButton.addEventListener("click", () => {
-            likeCounter.textContent = parseInt(likeCounter.textContent) + 1;
-        });
-        
-
+        const folderName = firstName.replace(/-/g, ' ');
         const imageFolderUrl = `FishEye_Photos/Sample Photos/${folderName}/`;
 
-        //If mp4, create video element
-        if (imageName.endsWith(".mp4")) {
+        //If media property video is true, create video element
+        if (media.video) {
+            const mediaVideoName = media.video;
             const videoElement = document.createElement("video");
             videoElement.setAttribute("class", "media__video");
-            videoElement.src = `${imageFolderUrl}${imageName}`;
+            videoElement.src = `${imageFolderUrl}${mediaVideoName}`;
             videoElement.alt = "description de la vidéo";
             videoElement.controls = true;
+
             imgLink.appendChild(videoElement);
-            const videoTitle = document.createElement("p");
-            videoTitle.textContent = imageName;
-            statsContainer.appendChild(videoTitle);
             mediaCard.appendChild(imgLink);
+
+            //Add stats element
+            addStatsElement(mediaCard, mediaTitle, photographerPrice);
 
             return;
         }
+        //If not mp4, create img element
         const imgElement = document.createElement("img");
-        imgElement.src = `${imageFolderUrl}${imageName}`;
+        imgElement.src = `${imageFolderUrl}${mediaName}`;
         imgElement.alt = "description de l'image";
         imgElement.setAttribute("class", "media__img");
-        const imgTitle = document.createElement("p");
-        imgTitle.textContent = imageName;
-       
-        imgLink.appendChild(imgElement);
-        statsContainer.appendChild(imgTitle);
-        mediaCard.appendChild(imgLink);
-        
-    });
-  });
-}
 
-export { getMedia };
-    
+        imgLink.appendChild(imgElement);
+        mediaCard.appendChild(imgLink);
+
+        //Add stats element
+        addStatsElement(mediaCard, mediaTitle, photographerPrice);
+    });
+}

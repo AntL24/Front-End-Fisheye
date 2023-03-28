@@ -1,25 +1,35 @@
 
 
-//Import the photographer factory
-import { photographerFactory } from '../factories/photographer.js';
+// Function to hide the loader after 3 seconds if the page is loaded
+function hideLoader() {
+    setTimeout(function() {
+      if (document.readyState === "complete") {
+        const loader = document.querySelector(".loader");
+        loader.classList.add("hide");
+      } else {
+        hideLoader();
+      }
+    }, 3000);
+}
+hideLoader();
 
-   //Request to get the photographers data
-    async function getPhotographers() {
-        try {
-            const response = await fetch("data/photographers.json");
-            if (!response.ok) {
-                throw new Error('Erreur de chargement des données');
-            }
-            const photographers = await response.json();
-            return photographers;
-        } catch (error) {
-            console.log(error);
-            return { photographers: [] };
+//Request to get the photographers data
+async function getPhotographers() {
+    try {
+        const response = await fetch("data/photographers.json");
+        if (!response.ok) {
+            throw new Error('Erreur de chargement des données');
         }
+        const photographers = await response.json();
+        return photographers;
+    } catch (error) {
+        console.log(error);
+        return { photographers: [] };
     }
+}
 
-
-    async function displayData(photographers) {
+//Display the photographers data in the DOM.
+async function displayData(photographers) {
         const photographersSection = document.querySelector(".photographer_section");
 
         photographers.forEach((photographer) => {
@@ -27,13 +37,13 @@ import { photographerFactory } from '../factories/photographer.js';
             const userCardDOM = photographerModel.getUserCardDOM();
             photographersSection.appendChild(userCardDOM);
         });
-    };
+};
 
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    };
+//Get the photographers data and call the displayData function.
+async function init() {
+    const { photographers } = await getPhotographers();
+    displayData(photographers);
+};
     
-    init();
+init();
     

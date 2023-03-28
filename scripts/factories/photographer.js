@@ -5,7 +5,6 @@ function photographerFactory(data) {
 
     //Construction of the photographer card with DOM elements
     function getUserCardDOM() {
-        
         const article = document.createElement('article');
         const img = document.createElement('img');
         const h2 = document.createElement('h2');
@@ -31,8 +30,7 @@ function photographerFactory(data) {
         spanPrice.textContent = price + '€/jour';
         spanPrice.setAttribute('class', 'photographer__price');
         imgContainer.setAttribute('class', 'photographer__img-container');
-        
-
+    
         article.appendChild( link );
         link.appendChild( imgContainer );
         imgContainer.appendChild( img );
@@ -45,5 +43,3 @@ function photographerFactory(data) {
     }
     return { name, picture, getUserCardDOM }
 }
-
-export { photographerFactory };

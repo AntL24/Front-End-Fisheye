@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -20,21 +19,33 @@
       <div class="photograph_header">
         <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
-      
-      <div class="photograph_order">
-        <label id="mediaFilterLabel" for="mediaFilter">Trier par</label>
-        <div role="group" aria-labelledby="mediaFilterLabel" id="mediaFilter">
-          <button id="sort-by-date" aria-haspopup="listbox" aria-expanded="false" aria-controls="media__container">Popularité</button>
-          <button id="sort-by-name" aria-haspopup="listbox" aria-expanded="false" aria-controls="media__container">Date</button>
-          <button id="sort-by-likes" aria-haspopup="listbox" aria-expanded="false" aria-controls="media__container">Titre</button>
+
+      <div class = "dropdown__container">
+        <label for = "exposed-dropdown-toggle" class="dropdown__label">Trier par</label>
+        <div class="exposed-dropdown">
+          <button id="exposed-dropdown-toggle" role="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown()">Popularité
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <ul id="exposed-dropdown-menu" class="exposed-dropdown-menu" role="listbox" aria-labelledby="exposed-dropdown-toggle">
+          </ul>
         </div>
       </div>
         
       <div class="media__container" role="list"></div>
 
+      <div class="photographer__TotalStats">
+        <div class="photographer__TotalStats__likes">
+          <p class="photographer__TotalStats__likes__number"> </p>
+          <i class="fas fa-heart"></i>
+        </div>
+        <div class="photographer__TotalStats__price">
+          <p class="photographer__TotalStats__price__number"></p>
+          <p class="photographer__TotalStats__price__text">€ /jour</p>
+        </div>
       </div>
 
     </main>
+
     <div id="contact_modal">
 			<div class="modal">
 				<header>
@@ -50,7 +61,37 @@
 				</form>
 			</div>
 		</div>
-    <script src="/scripts/pages/photographer.js" type="module"></script>
+
+    <script src="/scripts/factories/media.js"></script>
+    <script src="/scripts/factories/statsElements.js"></script>
+    <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/factories/photographer.js"></script>
+    <script src="/scripts/utils/filterGallery.js"></script>
+
+
+    <div class="loader">
+      <div class="loader-inner">
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+        <div class="loader-line-wrap">
+          <div class="loader-line"></div>
+        </div>
+      </div>
+      <div class="loader-text">
+        Votre page arrive, soyez patient !
+      </div>
+    </div>
+
   </body>
 </html>
