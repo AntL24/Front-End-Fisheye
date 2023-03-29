@@ -1,24 +1,20 @@
 //Get data and filter it to get the page's photographer infos. Then display the medias.
 async function getAndDisplayMedias() {
     const data = await getData();
-    const allPhotographers = data.photographers;
     const allMedias = data.media;
-
     const photographerMedias = allMedias.filter(media => media.photographerId == id);
-    const photographer = allPhotographers.find(photographer => photographer.id == id);
-
-    const photographerName = photographer.name;
-    const firstName = photographerName.split(' ')[0];
-
-    const photographerPrice = photographer.price;
-
-    displayMedias(photographerMedias, firstName, photographerPrice);
+    const sortedMediaPriceName = await filterGalerie(photographerMedias);
+    displayMedias(sortedMediaPriceName[0], sortedMediaPriceName[1], sortedMediaPriceName[2]);
 }
 
 //Display the photographer medias in the gallery
 function displayMedias(medias, firstName, photographerPrice) {
-    const container = document.querySelector(".media__container");
 
+    //Empty the container to avoid duplicates
+    const container = document.querySelector(".media__container");
+    container.innerHTML = "";
+
+    //Loop to build the media elements
     medias.forEach(media => {
         const mediaTitle = media.title;
         const mediaLikes = media.likes;

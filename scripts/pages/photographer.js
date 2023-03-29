@@ -21,7 +21,7 @@ async function getPhotographer(id) {
     return photographers.find(photographer => photographer.id == id);
 }
 
-//Display the photographer data
+//Display the photographer data in the header using the photographerFactory and manipulating the DOM elements
 async function displayPhotographerPage() {
     const photographer = await getPhotographer(id);
     const photographerPrice = photographer.price;
@@ -51,6 +51,11 @@ async function displayPhotographerPage() {
     //Display the rest of the page
     await getAndDisplayMedias();
     setTotalLikesAndPrice(photographerPrice);
+
+    //Add photographer name to the contact form under h2 with p
+    const photographerNameParagraph = document.querySelector('#contact__photographer-name');
+    photographerNameParagraph.textContent = photographer.name;
+
 }
 
 //Launch the main function

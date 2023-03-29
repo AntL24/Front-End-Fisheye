@@ -46,22 +46,39 @@
 
     </main>
 
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+    <div id="contact_modal" role="dialog" aria-labelledby="contact_modal_header">
+      <div class="modal">
+        <header>
+          <div class="header_text_container">
+            <h2 id="contact_modal_header">Contactez-moi</h2>
+            <p id="contact__photographer-name"></p>
+          </div>
+          <img class="close_modal" src="assets/icons/close.svg" alt="Fermer" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input />
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
 
+        <form onsubmit="submitForm(event)" id="contact_form">
+          <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom." class="error-message">
+            <label for="prenom">Prénom</label>
+            <input id="prenom" name="prenom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé." pattern = "^[A-Za-zÀ-ÖØ-öø-ÿ]+([ -][A-Za-zÀ-ÖØ-öø-ÿ]+)*$">
+          </div>
+          <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du nom." class="error-message">
+            <label for="nom">Nom</label>
+            <input id="nom" name="nom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du nom." pattern = "^[A-Za-zÀ-ÖØ-öø-ÿ]+([ -][A-Za-zÀ-ÖØ-öø-ÿ]+)*$">
+          </div>
+          <div data-error-visible="false" error-message="Veuillez entrer une adresse email valide." class="error-message">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" pattern="[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}" required  title="must be a valid email address"/>
+          </div>
+          <div>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="4" type="text" required title="Veuillez entrer 10 caractères ou, au plus, 500 caractères." pattern = ".{10,500}"></textarea>
+          </div>
+          <button type="submit" class="contact_button">Envoyer</button>
+        </form>
+
+      </div>
+    </div>
+    
     <script src="scripts/utils/getData.js" ></script>
     <script src="/scripts/factories/media.js"></script>
     <script src="/scripts/factories/statsElements.js"></script>
@@ -71,7 +88,7 @@
     <script src="/scripts/utils/filterGallery.js"></script>
     <script src="/scripts/utils/exposedDropdownMenu.js"></script>
 
-
+<!-- 
     <div class="loader">
       <div class="loader-inner">
         <div class="loader-line-wrap">
@@ -93,7 +110,7 @@
       <div class="loader-text">
         Votre page arrive, soyez patient !
       </div>
-    </div>
+    </div> -->
 
   </body>
 </html>

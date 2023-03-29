@@ -37,7 +37,9 @@ const toggleDropdown = () => {
     const newExposedOptionWithIcon = option.textContent + " " + '<i class="fas fa-chevron-down"></i>';
     dropdownToggle.innerHTML = newExposedOptionWithIcon;
     //Call the function to sort the photographers cards
-    await filterGalerie(option.textContent);
+    const sortedMediaPriceName = await filterGalerie();
+    //Call the function to display the sorted photographers cards ; passing mediaList, firstName and price.
+    displayMedias(sortedMediaPriceName[0], sortedMediaPriceName[1], sortedMediaPriceName[2]);
 };
   
 //Populate the dropdown menu with the available options when the dropdown menu is shown
