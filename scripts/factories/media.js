@@ -26,8 +26,7 @@ function displayMedias(medias, firstName, photographerPrice) {
         imgLink.setAttribute("aria-label", "Voir le média");
         imgLink.setAttribute("class", "media__link");
 
-        //empty link for now //COMPLETE LATER WITH LIGHTBOX
-        imgLink.href = "";
+        
 
         //Add media card. It will be englobing the media element and the stats container
         const mediaCard = document.createElement("article");
@@ -40,7 +39,7 @@ function displayMedias(medias, firstName, photographerPrice) {
 
         const folderName = firstName.replace(/-/g, ' ');
         const imageFolderUrl = `FishEye_Photos/Sample Photos/${folderName}/`;
-
+        
         //If media property video is true, create video element
         if (media.video) {
             const mediaVideoName = media.video;
@@ -49,9 +48,15 @@ function displayMedias(medias, firstName, photographerPrice) {
             videoElement.src = `${imageFolderUrl}${mediaVideoName}`;
             videoElement.alt = "description de la vidéo";
             videoElement.controls = true;
-
+            //empty link for now //COMPLETE LATER WITH LIGHTBOX
+            imgLink.href = `${imageFolderUrl}${mediaVideoName}`;
             imgLink.appendChild(videoElement);
             mediaCard.appendChild(imgLink);
+            //add lightBox function on click
+            imgLink.addEventListener("click", (e) => {
+                e.preventDefault();
+                lightBox(mediaVideoName, imageFolderUrl, medias);
+            });
 
             //Add stats element
             addStatsElement(mediaCard, mediaTitle, photographerPrice);
@@ -63,7 +68,13 @@ function displayMedias(medias, firstName, photographerPrice) {
         imgElement.src = `${imageFolderUrl}${mediaName}`;
         imgElement.alt = "description de l'image";
         imgElement.setAttribute("class", "media__img");
-
+        //empty link for now //COMPLETE LATER WITH LIGHTBOX
+        imgLink.href = `${imageFolderUrl}${mediaName}`;
+        //add lightBox function on click
+        imgLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            lightBox(mediaName, imageFolderUrl, medias);
+        });
         imgLink.appendChild(imgElement);
         mediaCard.appendChild(imgLink);
 

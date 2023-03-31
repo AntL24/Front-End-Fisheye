@@ -2,7 +2,6 @@ const modal = document.querySelector('#contact_modal');
 const modalHeader = modal.querySelector('header');
 const modalTitle = modal.querySelector('h2');
 const modalPhotographerName = modal.querySelector('#contact__photographer-name');
-// const closeModalButton = modal.querySelector('.close_modal');
 const form = modal.querySelector('form');
 const prenomInput = form.querySelector('#prenom');
 const nomInput = form.querySelector('#nom');
@@ -30,7 +29,8 @@ function submitForm(event) {
     } else {
       contactForm.reportValidity();
     }
-  }
+    }
+
 
 function onKeyup(event) {
     if (event.key === 'Escape') {
