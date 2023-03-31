@@ -1,3 +1,4 @@
+
 // Hide the loader after 3 seconds if the page is loaded
 function hideLoader() {
     setTimeout(function() {
@@ -23,39 +24,39 @@ async function getPhotographer(id) {
 
 //Display the photographer data in the header using the photographerFactory and manipulating the DOM elements
 async function displayPhotographerPage() {
-    const photographer = await getPhotographer(id);
-    const photographerPrice = photographer.price;
-    const photographerDOM = photographerFactory(photographer).makeUserCard();
-    
-    //Select the elements of insterest within the photographerDOM
-    const name = photographerDOM.querySelector('.photographer__name');
-    const header = document.querySelector('.photograph_header');
+  const photographer = await getPhotographer(id);
+  const photographerPrice = photographer.price;
+  const photographerModel = createPhotographer(photographer);
+  const photographerDOM = photographerModel.makeUserCard();
 
-    //Make an article to contain the name, location and tagline
-    const infoContainer = document.createElement('article');
-    infoContainer.setAttribute('class', 'photographer__info-container');
+  //Select the elements of interest within the photographerDOM
+  const name = photographerDOM.querySelector(".photographer__name");
+  const header = document.querySelector(".photograph_header");
 
-    //Change h2 name to h1 name
-    const h1 = document.createElement('h1');
-    h1.textContent = name.textContent;
+  //Make an article to contain the name, location and tagline
+  const infoContainer = document.createElement("article");
+  infoContainer.setAttribute("class", "photographer__info-container");
 
-    //Insert, in the header, the infoContainer before the button contact me
-    header.insertBefore(infoContainer, header.firstChild);
-    infoContainer.appendChild(h1);
-    infoContainer.appendChild(photographerDOM.querySelector('.photographer__location'));
-    infoContainer.appendChild(photographerDOM.querySelector('.photographer__tagline'));
+  //Change h2 name to h1 name
+  const h1 = document.createElement("h1");
+  h1.textContent = name.textContent;
 
-    //Append the imgContainer to the header
-    header.appendChild(photographerDOM.querySelector('.photographer__img-container'));
+  //Insert, in the header, the infoContainer before the button contact me
+  header.insertBefore(infoContainer, header.firstChild);
+  infoContainer.appendChild(h1);
+  infoContainer.appendChild(photographerDOM.querySelector(".photographer__location"));
+  infoContainer.appendChild(photographerDOM.querySelector(".photographer__tagline"));
 
-    //Display the rest of the page
-    await getAndDisplayMedias();
-    setTotalLikesAndPrice(photographerPrice);
+  //Append the imgContainer to the header
+  header.appendChild(photographerDOM.querySelector(".photographer__img-container"));
 
-    //Add photographer name to the contact form under h2 with p
-    const photographerNameParagraph = document.querySelector('#contact__photographer-name');
-    photographerNameParagraph.textContent = photographer.name;
+  //Display the rest of the page
+  await getAndDisplayMedias(photographerModel);
+  setTotalLikesAndPrice(photographerPrice, photographerModel);
 
+  //Add photographer name to the contact form under h2 with p
+  const photographerNameParagraph = document.querySelector("#contact__photographer-name");
+  photographerNameParagraph.textContent = photographer.name;
 }
 
 //Launch the main function
