@@ -27,7 +27,7 @@ async function displayPhotographerPage() {
   const photographer = await getPhotographer(id);
   const photographerPrice = photographer.price;
   const photographerModel = createPhotographer(photographer);
-  const photographerDOM = photographerModel.makeUserCard();
+  const photographerDOM = new PhotographerFactory(photographer).makeUserCard();
 
   //Select the elements of interest within the photographerDOM
   const name = photographerDOM.querySelector(".photographer__name");

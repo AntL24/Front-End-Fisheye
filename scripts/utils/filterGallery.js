@@ -8,7 +8,7 @@ async function filterGalerie(){
 
     const photographerName = datas.photographers.find((photographer) => photographer.id == id).name;
     const firstName = photographerName.split(" ")[0];
-    const photographerPrice = datas.photographers.find((photographer) => photographer.id == id).price;
+    const photographerPrice = datas.photographers.find((photographer) => photographer.id == id).price.toString();
 
     const mediaList = allMedia.filter((media) => media.photographerId == id); 
     const filterMode = document.getElementById("exposed-dropdown-toggle").textContent.trim();
@@ -32,5 +32,3 @@ async function filterGalerie(){
     //Return the mediaList, the firstName and the photographerPrice
     return [mediaList, firstName, photographerPrice];
 }
-
-
