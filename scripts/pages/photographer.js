@@ -25,8 +25,8 @@ async function getPhotographer(id) {
 //Display the photographer data in the header using the photographerFactory and manipulating the DOM elements
 async function displayPhotographerPage() {
   const photographer = await getPhotographer(id);
-  const photographerPrice = photographer.price;
-  const photographerModel = createPhotographer(photographer);
+  // const photographerPrice = photographer.price;
+  // const photographerModel = createPhotographer(photographer);
   const photographerDOM = new PhotographerFactory(photographer).makeUserCard();
 
   //Select the elements of interest within the photographerDOM
@@ -51,8 +51,8 @@ async function displayPhotographerPage() {
   header.appendChild(photographerDOM.querySelector(".photographer__img-container"));
 
   //Display the rest of the page
-  await getAndDisplayMedias(photographerModel);
-  setTotalLikesAndPrice(photographerPrice, photographerModel);
+  await getAndDisplayMedias();
+  // setTotalLikesAndPrice(photographerPrice, photographerModel);
 
   //Add photographer name to the contact form under h2 with p
   const photographerNameParagraph = document.querySelector("#contact__photographer-name");

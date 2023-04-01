@@ -59,11 +59,11 @@ class MediaFactory {
     const data = await getData();
     const allMedias = data.media;
     const photographerMedias = allMedias.filter(media => media.photographerId == id);
-    const sortedMediaPriceName = await filterGalerie(photographerMedias);
+    const sortedMediaPriceName = await filterGalerie(photographerMedias); //Returns an array with the sorted mediaList, the firstName and the photographerPrice
     const mediaFactory = new MediaFactory();
     const container = document.querySelector(".media__container");
     container.innerHTML = "";
-    photographerMedias.forEach(media => {
+    sortedMediaPriceName[0].forEach(media => {
       const imgLink = document.createElement("a");
       imgLink.setAttribute("aria-label", "Voir le média");
       imgLink.classList.add("media__link");
@@ -76,6 +76,6 @@ class MediaFactory {
       const folderName = sortedMediaPriceName[1].replace(/-/g, ' ');
       const imageFolderUrl = `FishEye_Photos/Sample Photos/${folderName}/`;
       const mediaObj = mediaFactory.createMedia(media);
-      mediaObj.render(imageFolderUrl, imgLink, mediaCard, sortedMediaPriceName[1], photographerMedias);
+      mediaObj.render(imageFolderUrl, imgLink, mediaCard, sortedMediaPriceName[1], sortedMediaPriceName[0]);
     });
 }

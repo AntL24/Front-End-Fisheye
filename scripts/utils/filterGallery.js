@@ -12,6 +12,7 @@ async function filterGalerie(){
 
     const mediaList = allMedia.filter((media) => media.photographerId == id); 
     const filterMode = document.getElementById("exposed-dropdown-toggle").textContent.trim();
+    console.log("Filter mode: " + filterMode);
 
     //Sort by likes
     if (filterMode == "Popularité") {
