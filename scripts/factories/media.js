@@ -1,3 +1,9 @@
+import { getData } from "../utils/getData.js";
+import { lightBox } from "../utils/lightBox.js";
+import { addStatsElement } from "../factories/statsElements.js";
+import { filterGalerie } from "../utils/filterGallery.js";
+import { id } from "../pages/photographer.js";
+
 //Factory class to create media objects. Contains Image and Video classes.
 class MediaFactory {
     createMedia(media) {
@@ -53,8 +59,8 @@ class MediaFactory {
   }
   
   
- //Get data and display medias on photographer page using MediaFactory class 
-  //to create media objects which are then rendered in the DOM using the render method.
+//Get data and display medias on photographer page using MediaFactory class 
+//to create media objects which are then rendered in the DOM using the render method.
   async function getAndDisplayMedias() {
     const data = await getData();
     const allMedias = data.media;
@@ -80,3 +86,5 @@ class MediaFactory {
       mediaObj.render(imageFolderUrl, imgLink, mediaCard, sortedMediaPriceName[1], sortedMediaPriceName[0]);
     });
 }
+
+export { getAndDisplayMedias };

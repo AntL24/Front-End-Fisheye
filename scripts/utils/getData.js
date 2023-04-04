@@ -12,3 +12,5 @@ async function getData() {
         return { photographersData: [] };
     }
 }
+
+export { getData };

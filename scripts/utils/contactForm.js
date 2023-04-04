@@ -3,11 +3,15 @@ const modalHeader = modal.querySelector('header');
 const modalTitle = modal.querySelector('h2');
 const modalPhotographerName = modal.querySelector('#contact__photographer-name');
 const form = modal.querySelector('form');
+form.addEventListener('submit', submitForm);
 const prenomInput = form.querySelector('#prenom');
 const nomInput = form.querySelector('#nom');
 const emailInput = form.querySelector('#email');
 const messageInput = form.querySelector('#message');
-const contactButton = form.querySelector('.contact_button');
+const closeModalButton = modal.querySelector('.close_modal');
+closeModalButton.addEventListener('click', closeModal);
+const contactButton = document.querySelector('.contact_button');
+contactButton.addEventListener('click', displayModal);
 
 function displayModal() {
   modal.style.display = 'block';
@@ -56,7 +60,6 @@ modalHeader.addEventListener('click', (event) => {
   }
 });
 
-contactButton.addEventListener('click', submitForm);
 document.addEventListener('keyup', onKeyup);
 
 const inputs = [prenomInput, nomInput, emailInput, messageInput];
@@ -76,3 +79,4 @@ function onKeydown(event) {
 document.addEventListener('keydown', onKeydown);
 
 
+export { displayModal, closeModal, submitForm };

@@ -133,7 +133,7 @@ function navigateMedia(direction, mediaList, imageFolderUrl) {
         nextMediaElement.setAttribute("src", `${imageFolderUrl}${mediaList[nextMediaIndex].image}`);
     }
 
-    const lightBoxContent = document.querySelector('.lightbox__content');
+    // const lightBoxContent = document.querySelector('.lightbox__content');
     const mediaContainer = document.querySelector('.lightbox__media-container');
     mediaContainer.replaceChild(nextMediaElement, currentMedia);
 
@@ -150,3 +150,5 @@ function navigateMedia(direction, mediaList, imageFolderUrl) {
         nextMediaElement.focus();
     }
 }
+
+export { lightBox };

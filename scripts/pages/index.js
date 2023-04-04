@@ -1,3 +1,5 @@
+import { getData } from "../utils/getData.js";
+import { PhotographerFactory } from "../factories/photographerFactory.js";
 
 //Hide the loader after 3 seconds if the page is loaded
 function hideLoader() {
@@ -21,7 +23,7 @@ async function displayData(photographers) {
     const userCardDOM = photographerModel.makeUserCard();
     photographersSection.appendChild(userCardDOM);
   });
-};
+}
 
 
 
@@ -29,7 +31,7 @@ async function displayData(photographers) {
 async function init() {
     const { photographers } = await getData();
     displayData(photographers);
-};
+}
     
 init();
     

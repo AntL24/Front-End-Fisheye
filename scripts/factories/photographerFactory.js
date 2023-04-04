@@ -52,3 +52,4 @@ function createPhotographer(data) {
   return new PhotographerFactory(data).makeUserCard();
 }
 
+export { createPhotographer, PhotographerFactory };

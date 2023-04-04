@@ -70,3 +70,5 @@ function updateTotalLikes(addOrRemove) {
     const totalLikes = document.querySelector(".photographer__TotalStats__likes__number");
     addOrRemove == "add" ? totalLikes.textContent = parseInt(totalLikes.textContent) + 1 : totalLikes.textContent = parseInt(totalLikes.textContent) - 1;
 }
+
+export { addStatsElement, setTotalLikesAndPrice };

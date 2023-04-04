@@ -1,3 +1,7 @@
+import { getData } from "../utils/getData.js";
+import { PhotographerFactory } from "../factories/photographerFactory.js";
+import { getAndDisplayMedias } from "../factories/media.js";
+import { setTotalLikesAndPrice } from "../factories/statsElements.js";
 
 // Hide the loader after 3 seconds if the page is loaded
 function hideLoader() {
@@ -61,3 +65,5 @@ async function displayPhotographerPage() {
 
 //Launch the main function
 displayPhotographerPage();
+
+export {id} ;

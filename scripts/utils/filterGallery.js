@@ -1,3 +1,6 @@
+import {getData} from "../utils/getData.js";
+import {id} from "../pages/photographer.js";
+
 //According to the filterMode, and return the sorted mediaList, the firstName and the photographerPrice.
 async function filterGalerie(){
     //Rearrange the mediaList array depending on the filterMode
@@ -33,3 +36,5 @@ async function filterGalerie(){
     //Return the mediaList, the firstName and the photographerPrice
     return [mediaList, firstName, photographerPrice];
 }
+
+export {filterGalerie};

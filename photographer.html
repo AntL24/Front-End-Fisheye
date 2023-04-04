@@ -5,6 +5,8 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"  charset="utf-8">
     <title>Fisheye - photographe </title>
   </head>
@@ -16,7 +18,7 @@
     </header>
     <main id="main" class="photographer_page">
       <div class="photograph_header">
-        <button class="contact_button" onclick="displayModal()" aria-label="contactez-moi">Contactez-moi</button>
+        <button class="contact_button" aria-label="contactez-moi">Contactez-moi</button>
       </div>
 
       <div class="dropdown__container">
@@ -27,9 +29,9 @@
               Popularité <i class="fas fa-chevron-down arrow"></i>
             </button>            
             <div class="dropdown-content" role="menu" aria-labelledby="selectedOption">
-              <a href="#" role="menuitem" onclick="selectOption('Popularité')" id="Popularité" style="display: none;" tabindex="-1">Popularité</a>
-              <a href="#" role="menuitem" onclick="selectOption('Date')" id="Date" tabindex="-1">Date</a>
-              <a href="#" role="menuitem" onclick="selectOption('Titre')" id="Titre" tabindex="-1">Titre</a>
+              <a href="#" role="menuitem" id="Popularité" style="display: none;" tabindex="-1">Popularité</a>
+              <a href="#" role="menuitem" id="Date" tabindex="-1">Date</a>
+              <a href="#" role="menuitem" id="Titre" tabindex="-1">Titre</a>
             </div>
           </div>
         </div>
@@ -57,10 +59,10 @@
             <h2 id="contact_modal_header">Contactez-moi</h2>
             <p id="contact__photographer-name"></p>
           </div>
-          <img class="close_modal" src="assets/icons/close.svg" alt="Fermer" onclick="closeModal()" />
+          <img class="close_modal" src="assets/icons/close.svg" alt="Fermer" />
         </header>
 
-        <form onsubmit="submitForm(event)" id="contact_form">
+        <form id="contact_form">
           <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom." class="error-message">
             <label for="prenom">Prénom</label>
             <input id="prenom" name="prenom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé."
@@ -85,15 +87,17 @@
       </div>
     </div>
     
-    <script src="scripts/utils/getData.js" ></script>
-    <script src="/scripts/factories/media.js"></script>
-    <script src="/scripts/factories/statsElements.js"></script>
-    <script src="/scripts/pages/photographer.js"></script>
-    <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/factories/photographerFactory.js"></script>
-    <script src="/scripts/utils/filterGallery.js"></script>
-    <script src="/scripts/utils/exposedDropdownMenu.js"></script>
-    <script src="/scripts/utils/lightBox.js"></script>
+    <script src="scripts/utils/getData.js" type="module"></script>
+    <script src="/scripts/factories/media.js" type="module"></script>
+    <script src="/scripts/factories/statsElements.js" type="module"></script>
+    <script src="/scripts/pages/photographer.js" type="module"></script>
+    <script src="/scripts/utils/contactForm.js" type="module"></script>
+    <script src="/scripts/factories/photographerFactory.js" type="module"></script>
+    <script src="/scripts/utils/filterGallery.js" type="module"></script>
+    <script src="/scripts/utils/exposedDropdownMenu.js" type="module"></script>
+    <script src="/scripts/utils/lightBox.js" type="module"></script>
+
+
 
 <!-- 
     <div class="loader">

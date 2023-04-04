@@ -1,3 +1,5 @@
+import { getAndDisplayMedias } from "../factories/media.js";
+
 // Ajouter un message d'instructions initial lorsque la page est chargée
 window.addEventListener("load", () => {
   console.log("Page chargée, instructions affichées")
@@ -38,7 +40,8 @@ document.getElementById("selectedOption").addEventListener("click", function(eve
     } else {
         dropdownContent.style.display = "block";
         this.setAttribute("aria-expanded", "true");
-        var firstOption = dropdownContent.querySelector("[role='menuitem']");
+        // var firstOption = dropdownContent.querySelector("[role='menuitem']");
+
     }
 });
 
@@ -52,7 +55,7 @@ document.getElementById("selectedOption").addEventListener("keydown", function(e
         } else {
             dropdownContent.style.display = "block";
             this.setAttribute("aria-expanded", "true");
-            var firstOption = dropdownContent.querySelector("[role='menuitem']");                
+            // var firstOption = dropdownContent.querySelector("[role='menuitem']");                
         }
     }
 });
@@ -66,3 +69,12 @@ for (var i = 0; i < options.length; i++) {
         }
     });
 }
+
+options.forEach((optionElement) => {
+    optionElement.addEventListener('click', (event) => {
+      event.preventDefault();
+      selectOption(optionElement.textContent);
+    });
+  });
+  
+export { updateInstructions };
