@@ -21,16 +21,28 @@ function closeModal() {
 }
 
 function submitForm(event) {
-    event.preventDefault();
-    const contactForm = event.target.closest('form');
-    if (contactForm.checkValidity()) {
-      console.log(`Prénom : ${prenomInput.value}\nNom : ${nomInput.value}\nEmail : ${emailInput.value}\nMessage : ${messageInput.value}`);
-      closeModal();
-    } else {
-      contactForm.reportValidity();
-    }
-    }
+  event.preventDefault();
+  const contactForm = event.target.closest('form');
+  const formInputs = contactForm.querySelectorAll('input, textarea');
 
+  let formIsValid = true;
+  for (const input of formInputs) {
+    if (!input.checkValidity()) {
+      const errorContainer = input.parentElement;
+      errorContainer.setAttribute('data-error-visible', true);
+      formIsValid = false;
+      contactForm.reportValidity();
+      } else {
+      const errorContainer = input.parentElement;
+      errorContainer.setAttribute('data-error-visible', false);
+    }
+  }
+
+  if (formIsValid) {
+    console.log(`Prénom : ${prenomInput.value}\nNom : ${nomInput.value}\nEmail : ${emailInput.value}\nMessage : ${messageInput.value}`);
+    closeModal();
+  }
+}
 
 function onKeyup(event) {
     if (event.key === 'Escape') {
@@ -46,5 +58,21 @@ modalHeader.addEventListener('click', (event) => {
 
 contactButton.addEventListener('click', submitForm);
 document.addEventListener('keyup', onKeyup);
+
+const inputs = [prenomInput, nomInput, emailInput, messageInput];
+
+function onKeydown(event) {
+  const currentIndex = inputs.indexOf(document.activeElement);
+
+  if (event.key === 'ArrowUp' && currentIndex > 0) {
+    event.preventDefault();
+    inputs[currentIndex - 1].focus();
+  } else if (event.key === 'ArrowDown' && currentIndex < inputs.length - 1) {
+    event.preventDefault();
+    inputs[currentIndex + 1].focus();
+  }
+}
+
+document.addEventListener('keydown', onKeydown);
 
 

@@ -2,32 +2,36 @@
 <html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"  charset="utf-8">
     <title>Fisheye - photographe </title>
   </head>
   <body>
-    <header>
+    <header role = "banner">
       <a href="index.html" class="logo_link" aria-label="retourner à la page d'accueil">
         <img src="assets/images/logo.png" class="logo" alt="logo fisheye">
       </a>
     </header>
     <main id="main" class="photographer_page">
       <div class="photograph_header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        <button class="contact_button" onclick="displayModal()" aria-label="contactez-moi">Contactez-moi</button>
       </div>
 
-      <div class = "dropdown__container">
-        <label for = "exposed-dropdown-toggle" class="dropdown__label">Trier par</label>
-        <div class="exposed-dropdown">
-          <button id="exposed-dropdown-toggle" role="button" aria-haspopup="listbox" aria-expanded="false" onclick="toggleDropdown()">Popularité
-            <i class="fas fa-chevron-down"></i>
-          </button>
-          <ul id="exposed-dropdown-menu" class="exposed-dropdown-menu" role="listbox" aria-labelledby="exposed-dropdown-toggle">
-          </ul>
+      <div class="dropdown__container">
+        <div class="dropdown">
+          <label for ="selectedOption" class="dropdown__label" id="dropdown-label">Trier par</label>
+          <div class="dropwdown__block">
+            <button class="dropbtn" id="selectedOption" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="dropdown-label">
+              Popularité <i class="fas fa-chevron-down arrow"></i>
+            </button>            
+            <div class="dropdown-content" role="menu" aria-labelledby="selectedOption">
+              <a href="#" role="menuitem" onclick="selectOption('Popularité')" id="Popularité" style="display: none;" tabindex="-1">Popularité</a>
+              <a href="#" role="menuitem" onclick="selectOption('Date')" id="Date" tabindex="-1">Date</a>
+              <a href="#" role="menuitem" onclick="selectOption('Titre')" id="Titre" tabindex="-1">Titre</a>
+            </div>
+          </div>
         </div>
       </div>
         
@@ -59,7 +63,9 @@
         <form onsubmit="submitForm(event)" id="contact_form">
           <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom." class="error-message">
             <label for="prenom">Prénom</label>
-            <input id="prenom" name="prenom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé." pattern = "^[A-Za-zÀ-ÖØ-öø-ÿ]+([ -][A-Za-zÀ-ÖØ-öø-ÿ]+)*$">
+            <input id="prenom" name="prenom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé."
+            pattern = "^[A-Za-zÀ-ÖØ-öø-ÿ]+([ -][A-Za-zÀ-ÖØ-öø-ÿ]+)*$" >
+
           </div>
           <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du nom." class="error-message">
             <label for="nom">Nom</label>
@@ -73,7 +79,7 @@
             <label for="message">Votre message</label>
             <textarea id="message" name="message" rows="4" type="text" required title="Veuillez entrer 10 caractères ou, au plus, 500 caractères." pattern = ".{10,500}"></textarea>
           </div>
-          <button type="submit" class="contact_button">Envoyer</button>
+          <button type="submit" class="contact_button" aria-label="send">Envoyer</button>
         </form>
 
       </div>
@@ -112,6 +118,9 @@
         Votre page arrive, soyez patient !
       </div>
     </div> -->
+
+    <div class = "lightbox__container" >
+    </div>
 
   </body>
 </html>

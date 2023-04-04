@@ -11,7 +11,7 @@ async function filterGalerie(){
     const photographerPrice = datas.photographers.find((photographer) => photographer.id == id).price.toString();
 
     const mediaList = allMedia.filter((media) => media.photographerId == id); 
-    const filterMode = document.getElementById("exposed-dropdown-toggle").textContent.trim();
+    const filterMode = document.getElementById("selectedOption").textContent.trim();
     console.log("Filter mode: " + filterMode);
 
     //Sort by likes

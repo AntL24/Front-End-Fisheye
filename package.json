@@ -1,0 +1,22 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Site web de photographies pour des artistes professionnels",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AntL24/Front-End-Fisheye.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AntL24/Front-End-Fisheye/issues"
+  },
+  "homepage": "https://github.com/AntL24/Front-End-Fisheye#readme",
+  "devDependencies": {
+    "eslint": "^8.37.0"
+  }
+}

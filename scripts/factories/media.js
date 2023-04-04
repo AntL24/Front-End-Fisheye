@@ -65,9 +65,10 @@ class MediaFactory {
     container.innerHTML = "";
     sortedMediaPriceName[0].forEach(media => {
       const imgLink = document.createElement("a");
-      imgLink.setAttribute("aria-label", "Voir le média");
+      imgLink.setAttribute("aria-label", "Voir le média " + media.title + " en grand");
       imgLink.classList.add("media__link");
-      const mediaCard = document.createElement("article");
+      const mediaCard = document.createElement("li");
+      mediaCard.setAttribute("role", "listitem");
       mediaCard.classList.add("media__card");
       mediaCard.dataset.date = media.date;
       mediaCard.dataset.likes = media.likes;

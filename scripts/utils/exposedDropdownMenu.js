@@ -1,77 +1,68 @@
+// Ajouter un message d'instructions initial lorsque la page est chargée
+window.addEventListener("load", () => {
+  console.log("Page chargée, instructions affichées")
+  updateInstructions("Cliquez sur le bouton pour afficher les options de tri.");
+});
 
-// Dropdown menu mechanism on button click
-const toggleDropdown = () => {
-    const dropdownToggle = document.getElementById("exposed-dropdown-toggle"); //Exposed button element
-    const dropdownMenu = document.getElementById("exposed-dropdown-menu");
-    const dropdownIcon = dropdownToggle.querySelector("i");
-  //Hidden case, we show the dropdown menu
-    if (dropdownToggle.getAttribute("aria-expanded") === "false") {
-      dropdownIcon.classList.remove("fa-chevron-down");
-      dropdownIcon.classList.add("fa-chevron-up");
-      dropdownToggle.setAttribute("aria-expanded", "true");
-      dropdownMenu.setAttribute("aria-expanded", "true");
-      dropdownMenu.innerHTML = ""; //Clear the dropdown menu before populating it, so that it doesn't duplicate the options
-      populateMenu();
-    } else {
-  //Exposed case, we hide the dropdown menu
-    dropdownIcon.classList.remove("fa-chevron-up");
-    dropdownIcon.classList.add("fa-chevron-down");
-    dropdownToggle.setAttribute("aria-expanded", "false");
-    dropdownMenu.setAttribute("aria-expanded", "false");
-    dropdownMenu.innerHTML = "";
+
+// Mettre à jour les instructions pour les utilisateurs de lecteurs d'écran
+const updateInstructions = (message) => {
+  const instructionsElement = document.getElementById("dropdown-instructions");
+  instructionsElement.textContent = message;
+};
+
+
+
+        
+async function selectOption(option) {
+    document.getElementById("selectedOption").innerHTML = option + " <i class='fas fa-chevron-down arrow'></i>";
+    var options = document.querySelectorAll(".dropdown-content a");
+    for (var i = 0; i < options.length; i++) {
+        options[i].style.display = "block";
+        // options[i].setAttribute("tabindex", "-1");
     }
-  };
-  
-  //Select the option and hide the dropdown menu when an option is clicked
-  const selectOption = async (option) => {
-    const dropdownToggle = document.getElementById("exposed-dropdown-toggle");
-    const dropdownMenu = document.getElementById("exposed-dropdown-menu");
-  
-    //Hide the dropdown menu
-    dropdownMenu.setAttribute("aria-expanded", "false");
-    dropdownToggle.innerHTML = option.textContent;
-    dropdownToggle.setAttribute("aria-expanded", "false");
-  
-    //Change the aria-selected attribute of the selected option
-    option.setAttribute("aria-selected", "true");
-    const newExposedOptionWithIcon = option.textContent + " " + '<i class="fas fa-chevron-down"></i>';
-    dropdownToggle.innerHTML = newExposedOptionWithIcon;
-    //Call the function to sort the photographers cards
-    // const sortedMediaPriceName = await filterGalerie();
-    //Render the sorted media using getAndDisplayMedias function
+    var selectedOption = document.getElementById(option);
+    selectedOption.style.display = "none";
+    // selectedOption.setAttribute("tabindex", "-1");
+    selectedOption.parentElement.style.display = "none";
+    selectedOption.parentElement.previousElementSibling.setAttribute("aria-expanded", "false");
     await getAndDisplayMedias();
-};
-  
-//Populate the dropdown menu with the available options when the dropdown menu is shown
-const populateMenu = () => {
-    const dropdownMenu = document.getElementById("exposed-dropdown-menu");
-    const exposedOption = document.getElementById("exposed-dropdown-toggle").textContent.trim();//Trim to get rid of anything else than the text
-    const options = ["Popularité", "Date", "Titre"];
-  
-    //Filter the options to remove the selected option
-    const optionsFiltered = options.filter((option) => option !== exposedOption);
-  
-    optionsFiltered.forEach((optionText) => {
-  
-      const option = document.createElement("li");
-      option.textContent = optionText;
-      option.setAttribute("role", "option");
-      option.setAttribute("tabindex", "0");
-      option.setAttribute("aria-selected", "false");
-      option.addEventListener("click", () => {
-        selectOption(option);
-      });
-      dropdownMenu.appendChild(option);
-  
-    });
-  
-    const selectedOption = dropdownMenu.querySelector(
-      'li[aria-selected="true"]'
-    );
-    //If there is a selected option, we change the old exposed option to the new selected option
-    if (selectedOption) {
-      const dropdownToggle = document.getElementById("exposed-dropdown-toggle");
-      const newExposedOptionWithIcon = selectedOption.textContent.trim() + " " + '<i class="fas fa-chevron-down"></i>';
-      dropdownToggle.innerHTML = newExposedOptionWithIcon;
+}
+
+document.getElementById("selectedOption").addEventListener("click", function(event) {
+    event.preventDefault();
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+        dropdownContent.style.display = "none";
+        this.setAttribute("aria-expanded", "false");
+    } else {
+        dropdownContent.style.display = "block";
+        this.setAttribute("aria-expanded", "true");
+        var firstOption = dropdownContent.querySelector("[role='menuitem']");
     }
-};
+});
+
+document.getElementById("selectedOption").addEventListener("keydown", function(event) {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+            this.setAttribute("aria-expanded", "false");
+        } else {
+            dropdownContent.style.display = "block";
+            this.setAttribute("aria-expanded", "true");
+            var firstOption = dropdownContent.querySelector("[role='menuitem']");                
+        }
+    }
+});
+
+var options = document.querySelectorAll(".dropdown-content a");
+for (var i = 0; i < options.length; i++) {
+    options[i].addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            selectOption(this.innerHTML);
+        }
+    });
+}
