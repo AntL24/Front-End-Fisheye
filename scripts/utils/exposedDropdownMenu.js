@@ -1,20 +1,4 @@
 import { getAndDisplayMedias } from "../factories/media.js";
-
-// Ajouter un message d'instructions initial lorsque la page est chargée
-window.addEventListener("load", () => {
-  console.log("Page chargée, instructions affichées")
-  updateInstructions("Cliquez sur le bouton pour afficher les options de tri.");
-});
-
-
-// Mettre à jour les instructions pour les utilisateurs de lecteurs d'écran
-const updateInstructions = (message) => {
-  const instructionsElement = document.getElementById("dropdown-instructions");
-  instructionsElement.textContent = message;
-};
-
-
-
         
 async function selectOption(option) {
     document.getElementById("selectedOption").innerHTML = option + " <i class='fas fa-chevron-down arrow'></i>";
@@ -76,5 +60,3 @@ options.forEach((optionElement) => {
       selectOption(optionElement.textContent);
     });
   });
-  
-export { updateInstructions };
