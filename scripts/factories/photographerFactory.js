@@ -1,3 +1,4 @@
+//Create a photographer object with the data from the JSON file.
 class PhotographerFactory {
   constructor(data) {
     this.name = data.name;
@@ -47,7 +48,7 @@ class PhotographerFactory {
     return article;
   }
 }
-
+//Returns a photographer object with the method makeUserCard().
 function createPhotographer(data) {
   return new PhotographerFactory(data).makeUserCard();
 }

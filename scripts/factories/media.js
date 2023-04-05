@@ -58,9 +58,8 @@ class MediaFactory {
     }
   }
   
-  
-//Get data and display medias on photographer page using MediaFactory class 
-//to create media objects which are then rendered in the DOM using the render method.
+//Make media objects and display them in the DOM.
+//Render is called on each media object to complete the photographer's gallery.
   async function getAndDisplayMedias() {
     const data = await getData();
     const allMedias = data.media;

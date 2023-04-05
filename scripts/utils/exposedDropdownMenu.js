@@ -1,20 +1,21 @@
 import { getAndDisplayMedias } from "../factories/media.js";
-        
+
+//Update menu on option selection, and display the newly filtered medias
 async function selectOption(option) {
     document.getElementById("selectedOption").innerHTML = option + " <i class='fas fa-chevron-down arrow'></i>";
     var options = document.querySelectorAll(".dropdown-content a");
     for (var i = 0; i < options.length; i++) {
         options[i].style.display = "block";
-        // options[i].setAttribute("tabindex", "-1");
+        options[i].setAttribute("tabindex", "-1");
     }
     var selectedOption = document.getElementById(option);
     selectedOption.style.display = "none";
-    // selectedOption.setAttribute("tabindex", "-1");
+    selectedOption.setAttribute("tabindex", "-1");
     selectedOption.parentElement.style.display = "none";
     selectedOption.parentElement.previousElementSibling.setAttribute("aria-expanded", "false");
     await getAndDisplayMedias();
 }
-
+//Hide menu on click outside
 document.getElementById("selectedOption").addEventListener("click", function(event) {
     event.preventDefault();
     var dropdownContent = this.nextElementSibling;
@@ -24,25 +25,22 @@ document.getElementById("selectedOption").addEventListener("click", function(eve
     } else {
         dropdownContent.style.display = "block";
         this.setAttribute("aria-expanded", "true");
-        // var firstOption = dropdownContent.querySelector("[role='menuitem']");
-
     }
 });
-
-document.getElementById("selectedOption").addEventListener("keydown", function(event) {
-    if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        var dropdownContent = this.nextElementSibling;
-        if (dropdownContent.style.display === "block") {
-            dropdownContent.style.display = "none";
-            this.setAttribute("aria-expanded", "false");
-        } else {
-            dropdownContent.style.display = "block";
-            this.setAttribute("aria-expanded", "true");
-            // var firstOption = dropdownContent.querySelector("[role='menuitem']");                
-        }
-    }
-});
+//Hide menu on click outside
+// document.getElementById("selectedOption").addEventListener("keydown", function(event) {
+//     if (event.key === "Enter" || event.key === " ") {
+//         event.preventDefault();
+//         var dropdownContent = this.nextElementSibling;
+//         if (dropdownContent.style.display === "block") {
+//             dropdownContent.style.display = "none";
+//             this.setAttribute("aria-expanded", "false");
+//         } else {
+//             dropdownContent.style.display = "block";
+//             this.setAttribute("aria-expanded", "true");
+//         }
+//     }
+// });
 
 var options = document.querySelectorAll(".dropdown-content a");
 for (var i = 0; i < options.length; i++) {
@@ -60,3 +58,5 @@ options.forEach((optionElement) => {
       selectOption(optionElement.textContent);
     });
   });
+
+  
