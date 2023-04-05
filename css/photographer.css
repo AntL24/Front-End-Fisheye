@@ -1,4 +1,5 @@
-main {     margin: 0 80px;
+main {
+ margin: 0 80px;
 }
 
 body{
@@ -274,9 +275,7 @@ body.modal-open {
 
 
 #contact_modal {
-  display: flex;
   display: none;
-
   align-items: center;
   justify-content: center;
   position: fixed;
