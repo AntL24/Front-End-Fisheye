@@ -1,4 +1,4 @@
-import { getAndDisplayMedias } from "../factories/media.js";
+import { getAndDisplayMedias } from "../components/mediaCard.js";
 
 //Update menu on option selection, and display the newly filtered medias
 async function selectOption(option) {
@@ -15,7 +15,8 @@ async function selectOption(option) {
     selectedOption.parentElement.previousElementSibling.setAttribute("aria-expanded", "false");
     await getAndDisplayMedias();
 }
-//Hide menu on click outside
+
+//Add event listeners to the dropdown menu to display the options and select an option
 document.getElementById("selectedOption").addEventListener("click", function(event) {
     event.preventDefault();
     var dropdownContent = this.nextElementSibling;
@@ -27,20 +28,6 @@ document.getElementById("selectedOption").addEventListener("click", function(eve
         this.setAttribute("aria-expanded", "true");
     }
 });
-//Hide menu on click outside
-// document.getElementById("selectedOption").addEventListener("keydown", function(event) {
-//     if (event.key === "Enter" || event.key === " ") {
-//         event.preventDefault();
-//         var dropdownContent = this.nextElementSibling;
-//         if (dropdownContent.style.display === "block") {
-//             dropdownContent.style.display = "none";
-//             this.setAttribute("aria-expanded", "false");
-//         } else {
-//             dropdownContent.style.display = "block";
-//             this.setAttribute("aria-expanded", "true");
-//         }
-//     }
-// });
 
 var options = document.querySelectorAll(".dropdown-content a");
 for (var i = 0; i < options.length; i++) {

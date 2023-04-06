@@ -1,6 +1,6 @@
 import { getData } from "../utils/getData.js";
-import { PhotographerFactory } from "../factories/photographerFactory.js";
-import { getAndDisplayMedias } from "../factories/media.js";
+import { Photographer } from "../factories/photographerFactory.js";
+import { getAndDisplayMedias } from "../components/mediaCard.js";
 import { setTotalLikesAndPrice } from "../factories/statsElements.js";
 
 // Hide the loader after 3 seconds if the page is loaded
@@ -29,9 +29,9 @@ async function getPhotographer(id) {
 //Display the photographer data in the header using the photographerFactory and manipulating the DOM elements
 async function displayPhotographerPage() {
   const photographer = await getPhotographer(id);
-  const photographerPrice = photographer.price;
-  // const photographerModel = createPhotographer(photographer);
-  const photographerDOM = new PhotographerFactory(photographer).makeUserCard();
+  const photographerModel = Photographer.createPhotographer(photographer);
+  const photographerDOM = Photographer.createPhotographerCard(photographerModel);
+  
 
   //Select the elements of interest within the photographerDOM
   const name = photographerDOM.querySelector(".photographer__name");
@@ -56,6 +56,7 @@ async function displayPhotographerPage() {
 
   //Display the rest of the page
   await getAndDisplayMedias();
+  const photographerPrice = photographer.price;
   setTotalLikesAndPrice(photographerPrice);
 
   //Add photographer name to the contact form under h2 with p

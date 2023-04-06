@@ -1,5 +1,6 @@
 import { getData } from "../utils/getData.js";
-import { PhotographerFactory } from "../factories/photographerFactory.js";
+import { Photographer } from "../factories/photographerFactory.js";
+
 
 //Hide the loader after 3 seconds if the page is loaded
 function hideLoader() {
@@ -18,14 +19,12 @@ hideLoader();
 async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
-  photographers.forEach((photographer) => {
-    const photographerModel = new PhotographerFactory(photographer);
-    const userCardDOM = photographerModel.makeUserCard();
+  photographers.forEach((photographerData) => {
+    const photographer = new Photographer(photographerData);
+    const userCardDOM = Photographer.createPhotographerCard(photographer);
     photographersSection.appendChild(userCardDOM);
   });
 }
-
-
 
 //Use two accessory functions to get the photographers data and display it.
 async function init() {
