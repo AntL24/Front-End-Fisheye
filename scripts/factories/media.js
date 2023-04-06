@@ -1,5 +1,5 @@
 import { lightBox } from "../utils/lightBox.js";
-import { addStatsElement } from "../factories/statsElements.js";
+import { addStatsElement } from "../components/statsElements.js";
 
 
 //Factory class to create media objects. Contains Image and Video classes.

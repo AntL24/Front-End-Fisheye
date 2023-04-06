@@ -1,7 +1,7 @@
 import { getData } from "../utils/getData.js";
 import { Photographer } from "../factories/photographerFactory.js";
 import { getAndDisplayMedias } from "../components/mediaCard.js";
-import { setTotalLikesAndPrice } from "../factories/statsElements.js";
+import { setTotalLikesAndPrice } from "../components/statsElements.js";
 
 // Hide the loader after 3 seconds if the page is loaded
 function hideLoader() {
