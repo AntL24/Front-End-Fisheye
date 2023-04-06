@@ -15,7 +15,6 @@ async function filterGalerie(){
 
     const mediaList = allMedia.filter((media) => media.photographerId == id); 
     const filterMode = document.getElementById("selectedOption").textContent.trim();
-    console.log("Filter mode: " + filterMode);
 
     //Sort by likes
     if (filterMode == "Popularité") {
@@ -24,7 +23,6 @@ async function filterGalerie(){
 
     //Sort by date
     if (filterMode == "Date") {
-        console.log("In date filter");
         mediaList.sort((a, b) => new Date(b.date) - new Date(a.date));
     }
 

@@ -1,5 +1,4 @@
-// 
-
+//Construct the lightbox according to the media type (image or video)
 function lightBox(mediaName, imageFolderUrl, medias) {
     const lightBoxContainer = document.querySelector(".lightbox__container");
     lightBoxContainer.setAttribute("aria-hidden", false);
@@ -26,18 +25,14 @@ function lightBox(mediaName, imageFolderUrl, medias) {
         lightBoxVideo.setAttribute("controls", true);
         lightBoxVideo.setAttribute("aria-label", "Vidéo intitulée " + media.title + " - Lecture en cours");
         lightBoxVideo.setAttribute("alt", "Close-up view de la vidéo intitulée " + media.title);
-        // lightBoxVideo.setAttribute("tabindex", 1);
         mediaContainer.appendChild(lightBoxVideo);
-        // lightBoxVideo.focus();
     } else {
         const lightBoxImg = document.createElement("img");
         lightBoxImg.setAttribute("class", "lightbox__media");
         lightBoxImg.setAttribute("src", `${imageFolderUrl}${mediaName}`);
         lightBoxImg.setAttribute("aria-label", "Photo intitulée " + media.title + " - Affichage en cours");
         lightBoxImg.setAttribute("alt", "Close-up view de la photo intitulée " + media.title);
-        // lightBoxImg.setAttribute("tabindex", 1);
         mediaContainer.appendChild(lightBoxImg);
-        // lightBoxImg.focus();
     }
 
     lightBoxContent.appendChild(mediaContainer);
@@ -55,31 +50,6 @@ function lightBox(mediaName, imageFolderUrl, medias) {
     lightBoxClose.innerHTML = `<i class="fas fa-times"></i>`;
     lightBoxContent.appendChild(lightBoxClose);
 
-    lightBoxClose.addEventListener("click", () => {
-        toggleBackgroundAccessibility(false);
-        lightBox.remove();
-    });
-    
-    lightBox.addEventListener("click", (e) => {
-        if (e.target === lightBox) {
-            toggleBackgroundAccessibility(false);
-            lightBox.remove();
-        }
-    });
-    
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") {
-            toggleBackgroundAccessibility(false);
-            lightBox.remove();
-        }
-        else if (e.key === "ArrowLeft") {
-            navigateMedia('previous', medias, imageFolderUrl);
-        }
-        else if (e.key === "ArrowRight") {
-            navigateMedia('next', medias, imageFolderUrl);
-        }
-    });
-
     const lightBoxPrev = document.createElement("button");
     lightBoxPrev.setAttribute("class", "lightbox__prev");
     lightBoxPrev.innerHTML = "<i class='fas fa-chevron-left'></i>";
@@ -95,23 +65,46 @@ function lightBox(mediaName, imageFolderUrl, medias) {
     lightBoxContent.setAttribute("aria-modal", true);
     lightBoxContent.setAttribute("role", "dialog");
 
+    //Navigate between medias when clicking on the previous and next buttons
     lightBoxPrev.addEventListener("click", () => {
         navigateMedia('previous', medias, imageFolderUrl, lightBoxNext);
     });
-
     lightBoxNext.addEventListener("click", () => {
         navigateMedia('next', medias, imageFolderUrl, lightBoxNext);
     });
+    //Focus allow the screen reader to read the content of the lightbox
     lightBoxNext.focus();
+    
+    //Remove the lightbox when clicking on the close button
+    lightBoxClose.addEventListener("click", () => {
+        toggleBackgroundAccessibility(false);
+        lightBox.remove();
+    });
+    
+    //Escape key to close the lightbox. Arrow keys to navigate between medias.
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            toggleBackgroundAccessibility(false);
+            lightBox.remove();
+        }
+        else if (e.key === "ArrowLeft") {
+            navigateMedia('previous', medias, imageFolderUrl);
+        }
+        else if (e.key === "ArrowRight") {
+            navigateMedia('next', medias, imageFolderUrl);
+        }
+    });
 }
 
+//Update lightbox content when navigating between medias
 function navigateMedia(direction, mediaList, imageFolderUrl, lightBoxNext) {
     let currentMedia = document.querySelector('.lightbox__media');
     let currentMediaName = currentMedia.getAttribute("src").split('/').pop();
-    const currentMediaIndex = mediaList.findIndex(media => media.image === currentMediaName || media.video === currentMediaName);
 
+    const currentMediaIndex = mediaList.findIndex(media => media.image === currentMediaName || media.video === currentMediaName);
     let nextMediaIndex = 0;
 
+    //Update index depending on the direction
     if (direction === 'previous') {
         nextMediaIndex = currentMediaIndex - 1;
     } else if (direction === 'next') {
@@ -119,13 +112,14 @@ function navigateMedia(direction, mediaList, imageFolderUrl, lightBoxNext) {
     } else {
         return;
     }
-
+    //Less than 0, go to the last media. More than the length of the array, go to the first media.
     if (nextMediaIndex < 0) {
         nextMediaIndex = mediaList.length - 1;
     } else if (nextMediaIndex >= mediaList.length) {
         nextMediaIndex = 0;
     }
 
+    //Create the next media element
     let nextMediaElement;
     if (mediaList[nextMediaIndex].video) {
         nextMediaElement = document.createElement("video");
@@ -161,7 +155,7 @@ function toggleBackgroundAccessibility(disable) {
     backgroundElements.forEach((element) => {
         if (disable) {
             const ariaHidden = element.getAttribute('aria-hidden');
-            if (ariaHidden === null || ariaHidden === 'false') {
+            if (ariaHidden === null || ariaHidden === 'false') {//Null or false because the attribute is removed when the lightbox is closed
                 element.setAttribute('aria-hidden', 'true');
                 element.setAttribute('data-prev-aria-hidden', 'false');
             }

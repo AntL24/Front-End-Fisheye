@@ -65,6 +65,6 @@ async function displayPhotographerPage() {
 }
 
 //Launch the main function
-displayPhotographerPage();
+await displayPhotographerPage();
 
 export {id} ;

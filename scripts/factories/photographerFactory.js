@@ -17,6 +17,7 @@ class Photographer {
   static createPhotographerCard(data) {
     return makeUserCard(data);
   }
+  //Static method to create a photographer object with the data from the JSON file.
   static createPhotographer(data) {
     return new Photographer(data);
   }

@@ -1,4 +1,11 @@
+
 const modal = document.querySelector('#contact_modal');
+
+const closeModalButton = modal.querySelector('.close_modal');
+closeModalButton.addEventListener('click', closeModal);
+
+const contactButton = document.querySelector('.contact_button');
+contactButton.addEventListener('click', displayModal);
 
 const form = modal.querySelector('form');
 form.addEventListener('submit', submitForm);
@@ -10,23 +17,19 @@ const messageInput = form.querySelector('#message');
 
 const inputs = [prenomInput, nomInput, emailInput, messageInput];
 
-const closeModalButton = modal.querySelector('.close_modal');
-closeModalButton.addEventListener('click', closeModal);
-
-const contactButton = document.querySelector('.contact_button');
-contactButton.addEventListener('click', displayModal);
-
 //Change contact modal display to block
 function displayModal() {
   modal.style.display = 'block';
   document.body.classList.add('modal-open');
   prenomInput.focus();
 }
+
 //Hide contact modal by changing its display
 function closeModal() {
   modal.style.display = 'none';
   document.body.classList.remove('modal-open');
 }
+
 //Console log the form values after checking their validity
 function submitForm(event) {
   event.preventDefault();

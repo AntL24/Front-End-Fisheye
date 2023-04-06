@@ -29,21 +29,23 @@ document.getElementById("selectedOption").addEventListener("click", function(eve
     }
 });
 
+//Add event listeners to the dropdown menu options to select an option
 var options = document.querySelectorAll(".dropdown-content a");
-for (var i = 0; i < options.length; i++) {
-    options[i].addEventListener("keydown", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            selectOption(this.innerHTML);
-        }
+    //Key down event listener for keyboard navigation
+    for (var i = 0; i < options.length; i++) {
+        options[i].addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                selectOption(this.innerHTML);
+            }
+        });
+    }
+    //click event listener for mouse navigation
+    options.forEach((optionElement) => {
+        optionElement.addEventListener('click', (event) => {
+        event.preventDefault();
+        selectOption(optionElement.textContent);
+        });
     });
-}
-
-options.forEach((optionElement) => {
-    optionElement.addEventListener('click', (event) => {
-      event.preventDefault();
-      selectOption(optionElement.textContent);
-    });
-  });
 
   

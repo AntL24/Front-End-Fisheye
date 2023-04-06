@@ -1,4 +1,5 @@
 
+//Construct dom elements for the given photographer
 function makeUserCard(photographer) {
     const article = document.createElement('article');
     const img = document.createElement('img');
