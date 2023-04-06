@@ -155,6 +155,7 @@ function navigateMedia(direction, mediaList, imageFolderUrl, lightBoxNext) {
     lightBoxNext.focus();
 }
 
+// Disable background elements when lightbox is open
 function toggleBackgroundAccessibility(disable) {
     const backgroundElements = document.querySelectorAll('body > *:not(.lightbox__container)');
     backgroundElements.forEach((element) => {

@@ -19,6 +19,7 @@ class Media {
     }
   
     render(imageFolderUrl, imgLink, mediaCard, photographerPrice, photographerMedias) {
+      const nextButton = document.querySelector(".lightbox__next");
       const imgElement = document.createElement("img");
       imgElement.src = `${imageFolderUrl}${this.media.image}`;
       imgElement.alt = this.media.description;
@@ -26,7 +27,7 @@ class Media {
       imgLink.href = `${imageFolderUrl}${this.media.image}`;
       imgLink.addEventListener("click", (e) => {
         e.preventDefault();
-        lightBox(this.media.image, imageFolderUrl, photographerMedias);
+        lightBox(this.media.image, imageFolderUrl, photographerMedias, nextButton);
       });
       imgLink.appendChild(imgElement);
       mediaCard.appendChild(imgLink);

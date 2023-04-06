@@ -68,7 +68,9 @@ function onKeydown(event) {
   //If the last input is focused, submit the form
   if (event.key === 'Enter' && currentIndex === inputs.length - 1) {
     event.preventDefault();
-    submitForm(event);
+    //Validate ternary operator if all inputs are valid. If so, submit the form. If not, return reportValidity() on the form.
+    inputs.every(input => input.checkValidity()) ? submitForm(event) : form.reportValidity();
+
   }
 }
 document.addEventListener('keydown', onKeydown);
