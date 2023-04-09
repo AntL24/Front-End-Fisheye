@@ -185,8 +185,16 @@ body.modal-open {
 .media__container .media__video {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: fill;
     overflow-clip-margin: unset;
+}
+
+.media__video-wrapper {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  overflow-clip-margin: unset;
+  cursor: pointer;
 }
 
 

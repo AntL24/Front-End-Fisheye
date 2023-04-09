@@ -51,8 +51,7 @@ class Media {
       videoWrapper.appendChild(videoElement);
       mediaCard.appendChild(videoWrapper);
       addStatsElement(mediaCard, this.media.title, photographerPrice);
-      videoWrapper.addEventListener("click", (e) => {
-        e.preventDefault();
+      videoElement.addEventListener("click", () => {
         lightBox(this.media.video, imageFolderUrl, photographerMedias);
       });
     }
