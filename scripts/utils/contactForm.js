@@ -45,6 +45,7 @@ function submitForm(event) {
       const errorContainer = input.parentElement;
       errorContainer.setAttribute('data-error-visible', false);
       console.log(`Prénom : ${prenomInput.value}\nNom : ${nomInput.value}\nEmail : ${emailInput.value}\nMessage : ${messageInput.value}`);
+      form.reset();
       closeModal();
     }
   }
