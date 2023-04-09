@@ -37,11 +37,8 @@ function submitForm(event) {
   const formInputs = contactForm.querySelectorAll('input, textarea');
 
   for (const input of formInputs) {
-    if (!input.checkValidity()) {
-      const errorContainer = input.parentElement;
-      errorContainer.setAttribute('data-error-visible', true);
-      contactForm.reportValidity();
-      } else {
+    if (input.checkValidity()) {
+     
       const errorContainer = input.parentElement;
       errorContainer.setAttribute('data-error-visible', false);
       console.log(`Prénom : ${prenomInput.value}\nNom : ${nomInput.value}\nEmail : ${emailInput.value}\nMessage : ${messageInput.value}`);
