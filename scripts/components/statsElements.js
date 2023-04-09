@@ -14,7 +14,7 @@ function addStatsElement(mediaCard, mediaTitle) {
     //Add like button
     const likeButton = document.createElement("button");
     likeButton.setAttribute("class", "media__like-button");
-    likeButton.setAttribute("aria-label", "Bouton j'aime pour " + mediaTitle);
+    likeButton.setAttribute("aria-label", "j'aime pour " + mediaTitle);
     likeButton.innerHTML = `<i class="far fa-heart"></i>`;
     likeElementsContainer.appendChild(likeButton);
 
