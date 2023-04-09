@@ -22,7 +22,7 @@ class Media {
       const nextButton = document.querySelector(".lightbox__next");
       const imgElement = document.createElement("img");
       imgElement.src = `${imageFolderUrl}${this.media.image}`;
-      imgElement.alt = this.media.description;
+      imgElement.alt = "Photographie intitulée " + this.media.title;
       imgElement.classList.add("media__img");
       imgLink.href = `${imageFolderUrl}${this.media.image}`;
       imgLink.addEventListener("click", (e) => {
@@ -44,7 +44,7 @@ class Media {
       const videoElement = document.createElement("video");
       videoElement.classList.add("media__video");
       videoElement.src = `${imageFolderUrl}${this.media.video}`;
-      videoElement.alt = this.media.description;
+      videoElement.alt = "Vidéo intitulée " + this.media.title;
       videoElement.controls = true;
       const videoWrapper = document.createElement("div");
       videoWrapper.classList.add("media__video-wrapper");
