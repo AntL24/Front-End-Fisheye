@@ -14,13 +14,14 @@ function addStatsElement(mediaCard, mediaTitle) {
     //Add like button
     const likeButton = document.createElement("button");
     likeButton.setAttribute("class", "media__like-button");
-    likeButton.setAttribute("aria-label", "like");
+    likeButton.setAttribute("aria-label", "Bouton j'aime pour " + mediaTitle);
     likeButton.innerHTML = `<i class="far fa-heart"></i>`;
     likeElementsContainer.appendChild(likeButton);
 
     //Add like counter
     const likeCounter = document.createElement("span");
     likeCounter.setAttribute("class", "media__like-counter");
+    likeCounter.setAttribute("aria-label", "likes");
     //Use attribute to get the number of likes
     likeCounter.textContent = mediaCard.getAttribute("data-likes");
     likeElementsContainer.appendChild(likeCounter);

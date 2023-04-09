@@ -45,11 +45,15 @@ class Media {
       videoElement.classList.add("media__video");
       videoElement.src = `${imageFolderUrl}${this.media.video}`;
       videoElement.alt = "Vidéo intitulée " + this.media.title;
-      videoElement.controls = true;
+      videoElement.controls = false; //Controls are added in lightBox.js
+      //Add accessibility attributes
+      videoElement.setAttribute("aria-label", "Voir vidéo intitulée " + this.media.title + " en grand format ");
+      
       const videoWrapper = document.createElement("div");
       videoWrapper.classList.add("media__video-wrapper");
       videoWrapper.appendChild(videoElement);
       mediaCard.appendChild(videoWrapper);
+      
       addStatsElement(mediaCard, this.media.title, photographerPrice);
       videoElement.addEventListener("click", () => {
         lightBox(this.media.video, imageFolderUrl, photographerMedias);
