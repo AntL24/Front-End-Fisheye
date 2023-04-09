@@ -4,7 +4,7 @@ import { getAndDisplayMedias } from "../components/mediaCard.js";
 async function selectOption(option) {
     document.getElementById("selectedOption").innerHTML = option + " <i class='fas fa-chevron-down arrow'></i>";
     //Change aria-label to the selected option
-    document.getElementById("dropdown-label").setAttribute("aria-label", "Afficher les médias, option choisie: " + option);
+    document.getElementById("dropdown-label").setAttribute("aria-label", "Trier les médias, option choisie: " + option);
     var options = document.querySelectorAll(".dropdown-content a");
     for (var i = 0; i < options.length; i++) {
         options[i].style.display = "block";
