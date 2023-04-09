@@ -12,7 +12,7 @@ function makeUserCard(photographer) {
 
     //Prevent spaces for w3c validation in src of img by using %20 instead of space
     photographer.picture = photographer.picture.replace(/ /g, '%20');
-    
+
 
     article.setAttribute('class', 'photographer__card');
     link.setAttribute('class', 'photographer__link');
@@ -30,6 +30,8 @@ function makeUserCard(photographer) {
     spanPrice.textContent = `${photographer.price}€/jour`;
     spanPrice.setAttribute('class', 'photographer__price');
     imgContainer.setAttribute('class', 'photographer__img-container');
+    //Force screen readers to read the name of the photographer before the location and price
+    h2.setAttribute('aria-label', `${photographer.name} ${spanLocation.textContent} ${spanPrice.textContent}`);
 
     article.appendChild( link );
     link.appendChild( imgContainer );

@@ -36,6 +36,8 @@ async function displayPhotographerPage() {
   //Select the elements of interest within the photographerDOM
   const name = photographerDOM.querySelector(".photographer__name");
   const header = document.querySelector(".photograph_header");
+  //Aria label for the photographer's header
+  header.setAttribute("aria-label", "Photographe " + name.textContent);
 
   //Make an article to contain the name, location and tagline
   const infoContainer = document.createElement("article");

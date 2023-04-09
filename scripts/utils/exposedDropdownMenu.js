@@ -3,14 +3,14 @@ import { getAndDisplayMedias } from "../components/mediaCard.js";
 //Update menu on option selection, and display the newly filtered medias
 async function selectOption(option) {
     document.getElementById("selectedOption").innerHTML = option + " <i class='fas fa-chevron-down arrow'></i>";
+    //Change aria-label to the selected option
+    document.getElementById("dropdown-label").setAttribute("aria-label", "Afficher les médias, option choisie: " + option);
     var options = document.querySelectorAll(".dropdown-content a");
     for (var i = 0; i < options.length; i++) {
         options[i].style.display = "block";
-        options[i].setAttribute("tabindex", "-1");
     }
     var selectedOption = document.getElementById(option);
     selectedOption.style.display = "none";
-    selectedOption.setAttribute("tabindex", "-1");
     selectedOption.parentElement.style.display = "none";
     selectedOption.parentElement.previousElementSibling.setAttribute("aria-expanded", "false");
     await getAndDisplayMedias();
