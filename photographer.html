@@ -24,13 +24,13 @@
         <div class="dropdown">
           <label for ="selectedOption" class="dropdown__label" id="dropdown-label">Trier par</label>
           <div class="dropwdown__block">
-            <button class="dropbtn" id="selectedOption" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="dropdown-label">
+            <button class="dropbtn" id="selectedOption" aria-haspopup="true" aria-expanded="false"  aria-labelledby="dropdown-label" aria-controls="dropdown-content">
               Popularité <i class="fas fa-chevron-down arrow"></i>
             </button>            
-            <div class="dropdown-content" role="menu" aria-labelledby="selectedOption">
-              <a href="#" role="menuitem" id="Popularité" style="display: none;" tabindex="-1">Popularité</a>
-              <a href="#" role="menuitem" id="Date" tabindex="-1">Date</a>
-              <a href="#" role="menuitem" id="Titre" tabindex="-1">Titre</a>
+            <div class="dropdown-content" role="menu" aria-labelledby="selectedOption" id="dropdown-content">
+              <a href="#" role="menuitem" id="Popularité" style="display: none;" >Popularité</a>
+              <a href="#" role="menuitem" id="Date" >Date</a>
+              <a href="#" role="menuitem" id="Titre" >Titre</a>
             </div>
           </div>
         </div>
