@@ -99,7 +99,9 @@ function lightBox(mediaName, imageFolderUrl, medias) {
 //Update lightbox content when navigating between medias
 function navigateMedia(direction, mediaList, imageFolderUrl, lightBoxNext) {
     let currentMedia = document.querySelector('.lightbox__media');
-    let currentMediaName = currentMedia.getAttribute("src").split('/').pop();
+    //To avoid w3c error, the spaces in the file name are replaced by %20
+    let currentMediaName = currentMedia.getAttribute("src").split("/").pop().replace("%20", " ");
+
 
     const currentMediaIndex = mediaList.findIndex(media => media.image === currentMediaName || media.video === currentMediaName);
     let nextMediaIndex = 0;
