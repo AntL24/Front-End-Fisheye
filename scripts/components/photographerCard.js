@@ -10,6 +10,10 @@ function makeUserCard(photographer) {
     const spanPrice = document.createElement('span');
     const imgContainer = document.createElement('div');
 
+    //Prevent spaces for w3c validation in src of img by using %20 instead of space
+    photographer.picture = photographer.picture.replace(/ /g, '%20');
+    
+
     article.setAttribute('class', 'photographer__card');
     link.setAttribute('class', 'photographer__link');
     link.setAttribute('aria-label', `Voir la page de ${photographer.name}`);

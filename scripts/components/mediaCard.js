@@ -18,14 +18,13 @@ async function getAndDisplayMedias() {
       imgLink.setAttribute("aria-label", "Voir le média " + media.title + " en grand");
       imgLink.classList.add("media__link");
       const mediaCard = document.createElement("li");
-      mediaCard.setAttribute("role", "listitem");
       mediaCard.classList.add("media__card");
       mediaCard.dataset.date = media.date;
       mediaCard.dataset.likes = media.likes;
       mediaCard.dataset.title = media.title;
       container.appendChild(mediaCard);
-      const folderName = sortedMediaPriceName[1].replace(/-/g, ' ');
-      const imageFolderUrl = `FishEye_Photos/Sample Photos/${folderName}/`;
+      const folderName = sortedMediaPriceName[1].replace(/-/g, '%20');
+      const imageFolderUrl = `FishEye_Photos/Sample%20Photos/${folderName}/`;
       const mediaObj = mediaFactory.createMedia(media);
       mediaObj.render(imageFolderUrl, imgLink, mediaCard, sortedMediaPriceName[1], sortedMediaPriceName[0]);
     });

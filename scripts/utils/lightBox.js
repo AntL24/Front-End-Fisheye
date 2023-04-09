@@ -126,11 +126,15 @@ function navigateMedia(direction, mediaList, imageFolderUrl, lightBoxNext) {
         nextMediaElement.setAttribute("class", "lightbox__media");
         nextMediaElement.setAttribute("src", `${imageFolderUrl}${mediaList[nextMediaIndex].video}`);
         nextMediaElement.setAttribute("controls", true);
-    } else {
+        nextMediaElement.addEventListener("click", (e) => {
+          e.preventDefault();
+          lightBox(mediaList[nextMediaIndex].video, imageFolderUrl, mediaList);
+        });
+      } else {
         nextMediaElement = document.createElement("img");
         nextMediaElement.setAttribute("class", "lightbox__media");
         nextMediaElement.setAttribute("src", `${imageFolderUrl}${mediaList[nextMediaIndex].image}`);
-    }
+      }
 
     // const lightBoxContent = document.querySelector('.lightbox__content');
     const mediaContainer = document.querySelector('.lightbox__media-container');

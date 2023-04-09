@@ -185,8 +185,14 @@ body.modal-open {
 .media__container .media__video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     overflow-clip-margin: unset;
+}
+
+
+.media__like-counter{
+  font-size: 1.3rem;
+  color: #901C1C;
 }
 
 .media__stats-container{
@@ -230,6 +236,7 @@ body.modal-open {
 
 .media__container {
   position: relative;
+  padding:0;
 }
 
 .dropdown__label{

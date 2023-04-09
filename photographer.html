@@ -5,7 +5,8 @@
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"  charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
     <title>Fisheye - photographe </title>
   </head>
   <body>
@@ -35,7 +36,7 @@
         </div>
       </div>
         
-      <div class="media__container" role="list"></div>
+      <ul class="media__container" role="list"></ul>
 
       <div class="photographer__TotalStats">
         <div class="photographer__TotalStats__likes">
@@ -61,23 +62,23 @@
         </header>
 
         <form id="contact_form">
-          <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom." class="error-message">
+          <div data-error-visible="false" data-error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom." class="data-error-message">
             <label for="prenom">Prénom</label>
             <input id="prenom" name="prenom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé."
             pattern = "^[A-Za-zÀ-ÖØ-öø-ÿ]+([ -][A-Za-zÀ-ÖØ-öø-ÿ]+)*$" >
 
           </div>
-          <div data-error-visible="false" error-message="Veuillez entrer 2 caractères ou plus pour le champ du nom." class="error-message">
+          <div data-error-visible="false" data-error-message="Veuillez entrer 2 caractères ou plus pour le champ du nom." class="data-error-message">
             <label for="nom">Nom</label>
             <input id="nom" name="nom" required type="text" title = "Veuillez entrer 2 caractères ou plus pour le champ du nom." pattern = "^[A-Za-zÀ-ÖØ-öø-ÿ]+([ -][A-Za-zÀ-ÖØ-öø-ÿ]+)*$">
           </div>
-          <div data-error-visible="false" error-message="Veuillez entrer une adresse email valide." class="error-message">
+          <div data-error-visible="false" data-error-message="Veuillez entrer une adresse email valide." class="data-error-message">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" pattern="[A-Za-z0-9._+-]+@[A-Za-z0-9 -]+\.[a-z]{2,}" required  title="must be a valid email address"/>
           </div>
           <div>
             <label for="message">Votre message</label>
-            <textarea id="message" name="message" rows="4" type="text" required title="Veuillez entrer 10 caractères ou, au plus, 500 caractères." pattern = ".{10,500}"></textarea>
+            <textarea id="message" name="message" rows="4" required title="Veuillez entrer, au plus, 500 caractères." maxlength="500"></textarea>
           </div>
           <button type="submit" class="contact_button" aria-label="send">Envoyer</button>
         </form>

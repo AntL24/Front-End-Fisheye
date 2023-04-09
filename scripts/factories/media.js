@@ -46,16 +46,18 @@ class Media {
       videoElement.src = `${imageFolderUrl}${this.media.video}`;
       videoElement.alt = this.media.description;
       videoElement.controls = true;
-      imgLink.href = `${imageFolderUrl}${this.media.video}`;
-      imgLink.addEventListener("click", (e) => {
+      const videoWrapper = document.createElement("div");
+      videoWrapper.classList.add("media__video-wrapper");
+      videoWrapper.appendChild(videoElement);
+      mediaCard.appendChild(videoWrapper);
+      addStatsElement(mediaCard, this.media.title, photographerPrice);
+      videoWrapper.addEventListener("click", (e) => {
         e.preventDefault();
         lightBox(this.media.video, imageFolderUrl, photographerMedias);
       });
-      imgLink.appendChild(videoElement);
-      mediaCard.appendChild(imgLink);
-      addStatsElement(mediaCard, this.media.title, photographerPrice);
+    }
   }
-}
+  
 
 
 export { Media };

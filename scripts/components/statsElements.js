@@ -19,7 +19,7 @@ function addStatsElement(mediaCard, mediaTitle) {
     likeElementsContainer.appendChild(likeButton);
 
     //Add like counter
-    const likeCounter = document.createElement("p");
+    const likeCounter = document.createElement("span");
     likeCounter.setAttribute("class", "media__like-counter");
     //Use attribute to get the number of likes
     likeCounter.textContent = mediaCard.getAttribute("data-likes");
