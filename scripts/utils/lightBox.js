@@ -88,10 +88,10 @@ function lightBox(mediaName, imageFolderUrl, medias) {
             lightBox.remove();
         }
         else if (e.key === "ArrowLeft") {
-            navigateMedia('previous', medias, imageFolderUrl);
+            navigateMedia('previous', medias, imageFolderUrl, lightBoxNext);
         }
         else if (e.key === "ArrowRight") {
-            navigateMedia('next', medias, imageFolderUrl);
+            navigateMedia('next', medias, imageFolderUrl, lightBoxNext);
         }
     });
 }
