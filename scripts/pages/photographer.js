@@ -61,9 +61,13 @@ async function displayPhotographerPage() {
   const photographerPrice = photographer.price;
   setTotalLikesAndPrice(photographerPrice);
 
-  //Add photographer name to the contact form under h2 with p
-  const photographerNameParagraph = document.querySelector("#contact__photographer-name");
-  photographerNameParagraph.textContent = photographer.name;
+  const photographerNameParagraph = document.querySelector("#contact_modal_header");
+  const nameSpan = document.createElement("span");
+  nameSpan.style.display = "block";
+  nameSpan.textContent = name.textContent;
+  
+  photographerNameParagraph.appendChild(nameSpan);
+  
 }
 
 //Launch the main function

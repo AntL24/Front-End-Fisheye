@@ -18,15 +18,29 @@ async function getAndDisplayMedias() {
       imgLink.setAttribute("aria-label", "Voir le média " + media.title + " en grand");
       imgLink.classList.add("media__link");
       const mediaCard = document.createElement("li");
-      mediaCard.classList.add("media__card");
-      mediaCard.dataset.date = media.date;
-      mediaCard.dataset.likes = media.likes;
-      mediaCard.dataset.title = media.title;
+      mediaCard.classList.add("media__cardli");
+      const mediaFigure = document.createElement("figure");
+
+      // mediaFigure.appendChild(imgLink);
+      // Figure element to contain the image and the figcaption
+      mediaFigure.classList.add("media__card");
+      mediaCard.appendChild(mediaFigure);
+      
       container.appendChild(mediaCard);
       const folderName = sortedMediaPriceName[1].replace(/-/g, '%20');
       const imageFolderUrl = `FishEye_Photos/Sample%20Photos/${folderName}/`;
       const mediaObj = mediaFactory.createMedia(media);
-      mediaObj.render(imageFolderUrl, imgLink, mediaCard, sortedMediaPriceName[1], sortedMediaPriceName[0]);
+        
+        // Check if the media is an image or a video
+        if (media.image) {
+            const imgLink = document.createElement("a");
+            imgLink.setAttribute("aria-label", "Voir le média " + media.title + " en grand");
+            imgLink.classList.add("media__link");
+            mediaFigure.appendChild(imgLink);
+            mediaObj.render(imageFolderUrl, imgLink, mediaFigure, sortedMediaPriceName[1], sortedMediaPriceName[0]);
+        } else if (media.video) {
+            mediaObj.render(imageFolderUrl, null, mediaFigure, sortedMediaPriceName[1], sortedMediaPriceName[0]);
+        }
     });
 }
 

@@ -86,11 +86,9 @@ function lightBox(mediaName, imageFolderUrl, medias) {
         if (e.key === "Escape") {
             toggleBackgroundAccessibility(false);
             lightBox.remove();
-        }
-        else if (e.key === "ArrowLeft") {
+        } else if (e.key === "ArrowLeft") {
             navigateMedia('previous', medias, imageFolderUrl, lightBoxNext);
-        }
-        else if (e.key === "ArrowRight") {
+        } else if (e.key === "ArrowRight") {
             navigateMedia('next', medias, imageFolderUrl, lightBoxNext);
         }
     });
@@ -138,7 +136,6 @@ function navigateMedia(direction, mediaList, imageFolderUrl, lightBoxNext) {
         nextMediaElement.setAttribute("src", `${imageFolderUrl}${mediaList[nextMediaIndex].image}`);
       }
 
-    // const lightBoxContent = document.querySelector('.lightbox__content');
     const mediaContainer = document.querySelector('.lightbox__media-container');
     mediaContainer.replaceChild(nextMediaElement, currentMedia);
 

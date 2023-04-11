@@ -20,7 +20,7 @@
         <button class="contact_button" aria-label="contactez-moi">Contactez-moi</button>
       </div>
 
-      <div class="dropdown__container">
+      <nav class="dropdown__container">
         <div class="dropdown">
           <label for ="selectedOption" class="dropdown__label" id="dropdown-label" aria-label="Trier les médias, option par défaut : Popularité">Trier par</label>
           <div class="dropwdown__block">
@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </nav>
         
       <ul class="media__container" role="list"></ul>
 
@@ -55,30 +55,44 @@
       <div class="modal">
         <header>
           <div class="header_text_container">
-            <h2 id="contact_modal_header">Contactez-moi</h2>
-            <p id="contact__photographer-name"></p>
+            <h2 id="contact_modal_header">Contactez-moi
+            </h2>
           </div>
           <img class="close_modal" src="assets/icons/close.svg" alt="Fermer" />
         </header>
+        
         <form id="contact_form">
-          <div class="data-error-message" data-error-visible="false" data-error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom.">
-            <label for="prenom">Prénom</label>
-            <input id="prenom" name="prenom" required type="text" title="Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé." pattern="^[A-Za-zÀ-ÿ]+([ -][A-Za-zÀ-ÿ]+)*$">
-          </div>
-          <div class="data-error-message" data-error-visible="false" data-error-message="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
-            <label for="nom">Nom</label>
-            <input id="nom" name="nom" required type="text" title="Veuillez entrer 2 caractères ou plus pour le champ du nom." pattern="^[A-Za-zÀ-ÿ]+([ -][A-Za-zÀ-ÿ]+)*$">
-          </div>
-          <div class="data-error-message" data-error-visible="false" data-error-message="Veuillez entrer une adresse email valide.">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}" title="Doit être une adresse email valide.">
-          </div>
-          <div>
-            <label for="message">Votre message</label>
-            <textarea id="message" name="message" rows="4" required title="Veuillez entrer, au plus, 500 caractères." maxlength="500"></textarea>
-          </div>
+          <fieldset class="no-border">
+            <legend class="sr-only">Informations personnelles</legend>
+            <div class="data-error-message" data-error-visible="false" data-error-message="Veuillez entrer 2 caractères ou plus pour le champ du prénom.">
+              <label for="prenom">Prénom</label>
+              <input id="prenom" name="prenom" required type="text" title="Veuillez entrer 2 caractères ou plus pour le champ du prénom. Plusieurs mots séparés par espace autorisé. Tiret haut autorisé." pattern="^[A-Za-zÀ-ÿ]+([ -][A-Za-zÀ-ÿ]+)*$">
+            </div>
+            <div class="data-error-message" data-error-visible="false" data-error-message="Veuillez entrer 2 caractères ou plus pour le champ du nom.">
+              <label for="nom">Nom</label>
+              <input id="nom" name="nom" required type="text" title="Veuillez entrer 2 caractères ou plus pour le champ du nom." pattern="^[A-Za-zÀ-ÿ]+([ -][A-Za-zÀ-ÿ]+)*$">
+            </div>
+          </fieldset>
+        
+          <fieldset class="no-border">
+            <legend class="sr-only">Contact</legend>
+            <div class="data-error-message" data-error-visible="false" data-error-message="Veuillez entrer une adresse email valide.">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-z]{2,}" title="Doit être une adresse email valide.">
+            </div>
+          </fieldset>
+        
+          <fieldset class="no-border">
+            <legend class="sr-only">Message</legend>
+            <div>
+              <label for="message">Votre message</label>
+              <textarea id="message" name="message" rows="4" required title="Veuillez entrer, au plus, 500 caractères." maxlength="500"></textarea>
+            </div>
+          </fieldset>
+        
           <button type="submit" class="contact_button" aria-label="Envoyer">Envoyer</button>
         </form>
+        
         
 
       </div>

@@ -1,75 +1,83 @@
+function addStatsElement(mediaFigure, mediaTitle, photographerMedias) {
+    const mediaFigCaption = document.createElement("figcaption");
+    mediaFigCaption.classList.add("media__stats-container");
+    mediaFigure.appendChild(mediaFigCaption);
 
-//Add stats element to the media card
-function addStatsElement(mediaCard, mediaTitle) {
-    //Add stats container
-    const statsContainer = document.createElement("div");
-    statsContainer.setAttribute("class", "media__stats-container");
-    mediaCard.appendChild(statsContainer);
-
-    //Add like elements container
+    //Iterate over medias to get the right media
+    photographerMedias.forEach(media => {
+        if (media.title == mediaTitle) {
+            mediaFigCaption.dataset.date = media.date;
+            mediaFigCaption.dataset.likes = media.likes;
+            mediaFigCaption.dataset.title = media.title;
+        }
+    });
+    
+    //Select stats container element
+    mediaFigCaption.innerHTML = mediaTitle;
+  
+    // Add like elements container
     const likeElementsContainer = document.createElement("div");
     likeElementsContainer.setAttribute("class", "media__like-elements-container");
-    statsContainer.appendChild(likeElementsContainer);
-    
-    //Add like button
+    mediaFigCaption.appendChild(likeElementsContainer);
+  
+    // Add like button
     const likeButton = document.createElement("button");
     likeButton.setAttribute("class", "media__like-button");
-    likeButton.setAttribute("aria-label", "j'aime pour " + mediaTitle);
+    likeButton.setAttribute("aria-label", "like");
     likeButton.innerHTML = `<i class="far fa-heart"></i>`;
     likeElementsContainer.appendChild(likeButton);
-
-    //Add like counter
+  
+    // Add like counter
     const likeCounter = document.createElement("span");
     likeCounter.setAttribute("class", "media__like-counter");
-    likeCounter.setAttribute("aria-label", "likes");
-    //Use attribute to get the number of likes
-    likeCounter.textContent = mediaCard.getAttribute("data-likes");
+    //Aria label will indicate the number of likes : "nombre de likes : 5" for example
+    likeCounter.setAttribute("aria-hidden", "true");
+    likeCounter.textContent = mediaFigCaption.dataset.likes;
+    const figCaptionNumber = document.createElement("span")
+    figCaptionNumber.setAttribute("class", "sr-only");
+    //Aria label will indicate the number of likes : "nombre de likes : 5" for example
+    figCaptionNumber.textContent = "nombre de likes : " + mediaFigCaption.dataset.likes;
     likeElementsContainer.appendChild(likeCounter);
-
-    //Add event listener to like button
+    likeElementsContainer.appendChild(figCaptionNumber);
+  
+    // Add event listener to like button
     likeButton.addEventListener("click", () => {
-        //If the media has already been liked, remove the like
-        if (mediaCard.getAttribute("data-liked") == "true") {
-            likeButton.innerHTML = `<i class="far fa-heart"></i>`;
-            likeCounter.textContent = parseInt(likeCounter.textContent) - 1;
-            mediaCard.setAttribute("data-liked", false);
-            updateTotalLikes("remove");
-            return;
-        }
-        likeCounter.textContent = parseInt(likeCounter.textContent) + 1;
-        // Add attribute to the media card to know if it has been liked
-        mediaCard.setAttribute("data-liked", true);
-        updateTotalLikes("add");
-        likeButton.innerHTML = `<i class="fas fa-heart"></i>`; //If clicked, change html to display full heart icon
-        
+      if (mediaFigCaption.getAttribute("data-liked") == "true") {
+        likeButton.innerHTML = `<i class="far fa-heart"></i>`;
+        likeCounter.textContent = parseInt(likeCounter.textContent) - 1;
+        mediaFigCaption.setAttribute("data-liked", false);
+        updateTotalLikes("remove");
+        return;
+      }
+      likeCounter.textContent = parseInt(likeCounter.textContent) + 1;
+      mediaFigCaption.setAttribute("data-liked", true);
+      updateTotalLikes("add");
+      likeButton.innerHTML = `<i class="fas fa-heart"></i>`;
     });
-    //Add title
-    const title = document.createElement("p");
-    title.textContent = mediaTitle;
-    statsContainer.appendChild(title);
-}
-
-//Display the photographer total stats
-function setTotalLikesAndPrice(photographerPrice) {
+  }
+  
+  
+  function setTotalLikesAndPrice(photographerPrice) {
     const totalLikes = document.querySelector(".photographer__TotalStats__likes__number");
     const totalPrice = document.querySelector(".photographer__TotalStats__price__number");
-    const mediaCards = document.querySelectorAll(".media__card");
+    const mediaFigCaptions = document.querySelectorAll(".media__stats-container");
     let totalLikesNumber = 0;
-
-    mediaCards.forEach(mediaCard => {
-        totalLikesNumber += parseInt(mediaCard.getAttribute("data-likes"));
+  
+    mediaFigCaptions.forEach(mediaFigCaption => {
+      totalLikesNumber += parseInt(mediaFigCaption.getAttribute("data-likes"));
     });
     totalLikes.textContent = totalLikesNumber;
-    //if the photographer has a price, display it
-    if (photographerPrice){
-    totalPrice.textContent = photographerPrice;
+    if (photographerPrice) {
+      totalPrice.textContent = photographerPrice;
     }
-}
-
-function updateTotalLikes(addOrRemove) {
-   //Just add one or remove one like to the total likes
+  }
+  
+  function updateTotalLikes(addOrRemove) {
     const totalLikes = document.querySelector(".photographer__TotalStats__likes__number");
-    addOrRemove == "add" ? totalLikes.textContent = parseInt(totalLikes.textContent) + 1 : totalLikes.textContent = parseInt(totalLikes.textContent) - 1;
-}
-
-export { addStatsElement, setTotalLikesAndPrice };
+    addOrRemove == "add"
+      ? (totalLikes.textContent = parseInt(totalLikes.textContent) + 1)
+      : (totalLikes.textContent = parseInt(totalLikes.textContent) - 1);
+  }
+  
+  export { addStatsElement, setTotalLikesAndPrice };
+  
