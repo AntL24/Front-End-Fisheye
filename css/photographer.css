@@ -28,7 +28,8 @@ body{
 }
 
 .contact_button:hover {
-    background-color: #D3573C;
+    background-color: #DB8876;
+    color: black;
 }
 
 /* Modale de contact */
